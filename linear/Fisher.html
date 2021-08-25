@@ -199,12 +199,12 @@
   <div class="section" id="fisher">
 <h1>Fisher准则<a class="headerlink" href="#fisher" title="Permalink to this headline">¶</a></h1>
 <p>以二分类为例，训练集为 <span class="math notranslate nohighlight">\(D=\{(\boldsymbol \phi_n,t_n):n=1,2,...,N\}, \ t_n \in \{C_1, C_2\}\)</span>，通过线性映射投影到一维空间 <span class="math notranslate nohighlight">\(y\)</span>，</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6073ecd8-5d4f-445c-9324-c6b7b42aaa10">
-<span class="eqno">(5)<a class="headerlink" href="#equation-6073ecd8-5d4f-445c-9324-c6b7b42aaa10" title="Permalink to this equation">¶</a></span>\[\begin{equation}y=\mathbf w^{\top} \boldsymbol \phi\end{equation}\]</div>
+<div class="math notranslate nohighlight" id="equation-fisher1">
+<span class="eqno">(5)<a class="headerlink" href="#equation-fisher1" title="Permalink to this equation">¶</a></span>\[y=\mathbf w^{\top} \boldsymbol \phi\]</div>
 <p>Fisher 准则定义如下区分性度量：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1b98b2d0-8cbe-4e43-8cb4-6db0f6c3d089">
-<span class="eqno">(6)<a class="headerlink" href="#equation-1b98b2d0-8cbe-4e43-8cb4-6db0f6c3d089" title="Permalink to this equation">¶</a></span>\[\begin{equation}L(\mathbf w)=\frac {(m_1-m_2)^2} {\sigma_1^2+\sigma_2^2} \end{equation}\]</div>
-<p>上式中 <span class="math notranslate nohighlight">\(m_1, m_2\)</span> 是 <span class="math notranslate nohighlight">\(C_1, C_2\)</span> 的样本点在映射空间（这里是一维）的均值，<span class="math notranslate nohighlight">\(\sigma_1^2, \sigma_2^2\)</span> 是映射空间的方差，（2）式表示类间距离越大，类内分散程度越小，则这两类区分性越强。</p>
+<div class="math notranslate nohighlight" id="equation-fisher2">
+<span class="eqno">(6)<a class="headerlink" href="#equation-fisher2" title="Permalink to this equation">¶</a></span>\[L(\mathbf w)=\frac {(m_1-m_2)^2} {\sigma_1^2+\sigma_2^2}\]</div>
+<p>上式中 <span class="math notranslate nohighlight">\(m_1, m_2\)</span> 是 <span class="math notranslate nohighlight">\(C_1, C_2\)</span> 的样本点在映射空间（这里是一维）的均值，<span class="math notranslate nohighlight">\(\sigma_1^2, \sigma_2^2\)</span> 是映射空间的方差，<a class="reference internal" href="#equation-fisher2">(6)</a> 式表示类间距离越大，类内分散程度越小，则这两类区分性越强。</p>
 <p>映射空间 <span class="math notranslate nohighlight">\(C_1\)</span> 样本集合记为 <span class="math notranslate nohighlight">\(D_1\)</span>，数量记为 <span class="math notranslate nohighlight">\(N_1=|D_1|\)</span>，均值为</p>
 <div class="math notranslate nohighlight">
 \[m_1=\frac 1 {N_1} \sum_{\boldsymbol \phi_i \in D_1} \mathbf w^{\top} \boldsymbol \phi_i=\mathbf w^{\top} \boldsymbol \mu_1\]</div>
@@ -215,8 +215,8 @@
 <div class="math notranslate nohighlight">
 \[(m_2-m_1)^2=[\mathbf w^{\top}(\boldsymbol {\mu_2-\mu_1})]^2=\mathbf w^{\top} \mathbf S_{B} \mathbf w\]</div>
 <p>其中</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8b5f337f-c6df-4f9d-88ab-60f8075a7ca0">
-<span class="eqno">(7)<a class="headerlink" href="#equation-8b5f337f-c6df-4f9d-88ab-60f8075a7ca0" title="Permalink to this equation">¶</a></span>\[\begin{equation}\mathbf S_{B}=(\boldsymbol {\mu_2-\mu_1})(\boldsymbol {\mu_2-\mu_1})^{\top} \end{equation}\]</div>
+<div class="math notranslate nohighlight" id="equation-fisher3">
+<span class="eqno">(7)<a class="headerlink" href="#equation-fisher3" title="Permalink to this equation">¶</a></span>\[\mathbf S_{B}=(\boldsymbol {\mu_2-\mu_1})(\boldsymbol {\mu_2-\mu_1})^{\top}\]</div>
 <p>另一方面，映射空间 <span class="math notranslate nohighlight">\(C_1\)</span> 样本方差为</p>
 <div class="math notranslate nohighlight">
 \[\sigma_1^2=\frac 1 {N_1} \sum (y_i - m_1)^2=\frac 1 {N_1} \sum (\mathbf w^{\top}(\boldsymbol {\phi_i - \mu_1}))^2 = \frac 1 {N_1} \sum \mathbf w^{\top} (\boldsymbol {\phi_i-\mu_1})(\boldsymbol {\phi_i-\mu_1})^{\top} \mathbf w\]</div>
@@ -224,35 +224,36 @@
 <div class="math notranslate nohighlight">
 \[\sigma_1^2+\sigma_2^2=\mathbf w^{\top} \mathbf S_W \mathbf w\]</div>
 <p>其中</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7bff9c3d-4d66-419d-a56f-8cb5cd87db82">
-<span class="eqno">(8)<a class="headerlink" href="#equation-7bff9c3d-4d66-419d-a56f-8cb5cd87db82" title="Permalink to this equation">¶</a></span>\[\begin{equation}\mathbf S_W=\frac 1{N_1} \sum_{\boldsymbol \phi_i \in D_1} (\boldsymbol {\phi_i-\mu_1})(\boldsymbol {\phi_i-\mu_1})^{\top} + \frac 1 {N_2} \sum_{\boldsymbol \phi_i \in D_2} (\boldsymbol {\phi_i-\mu_2})(\boldsymbol {\phi_i-\mu_2})^{\top} \end{equation}\]</div>
-<p>综上 （2）式为</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7754a065-fdfd-4162-bbd7-e49d66dfca74">
-<span class="eqno">(9)<a class="headerlink" href="#equation-7754a065-fdfd-4162-bbd7-e49d66dfca74" title="Permalink to this equation">¶</a></span>\[\begin{equation}L(\mathbf w)=\frac {\mathbf w^{\top} \mathbf S_{B} \mathbf w} {\mathbf w^{\top} \mathbf S_W \mathbf w} \end{equation}\]</div>
-<p>对（5）式中的 <span class="math notranslate nohighlight">\(\mathbf w\)</span> 进行优化，取梯度并令其等于 0，得到</p>
+<div class="math notranslate nohighlight" id="equation-fisher4">
+<span class="eqno">(8)<a class="headerlink" href="#equation-fisher4" title="Permalink to this equation">¶</a></span>\[\mathbf S_W=\frac 1{N_1} \sum_{\boldsymbol \phi_i \in D_1} (\boldsymbol {\phi_i-\mu_1})(\boldsymbol {\phi_i-\mu_1})^{\top} + \frac 1 {N_2} \sum_{\boldsymbol \phi_i \in D_2} (\boldsymbol {\phi_i-\mu_2})(\boldsymbol {\phi_i-\mu_2})^{\top} \]</div>
+<p>综上 <a class="reference internal" href="#equation-fisher2">(6)</a> 式为</p>
+<div class="math notranslate nohighlight" id="equation-fisher5">
+<span class="eqno">(9)<a class="headerlink" href="#equation-fisher5" title="Permalink to this equation">¶</a></span>\[L(\mathbf w)=\frac {\mathbf w^{\top} \mathbf S_{B} \mathbf w} {\mathbf w^{\top} \mathbf S_W \mathbf w}\]</div>
+<p>对 <a class="reference internal" href="#equation-fisher5">(9)</a> 式中的 <span class="math notranslate nohighlight">\(\mathbf w\)</span> 进行优化，取梯度并令其等于 0，得到</p>
 <div class="math notranslate nohighlight">
 \[\nabla_{\mathbf w} L(\mathbf w)=\frac {\mathbf S_B \mathbf w(\mathbf w^{\top} \mathbf S_W \mathbf w)-(\mathbf w^{\top} \mathbf S_{B} \mathbf w)\mathbf S_W \mathbf w} {(\mathbf w^{\top} \mathbf S_W \mathbf w)^2}=0\]</div>
 <p>整理得</p>
 <div class="math notranslate nohighlight">
 \[\mathbf S_B \mathbf w(\mathbf w^{\top} \mathbf S_W \mathbf w)=(\mathbf w^{\top} \mathbf S_{B} \mathbf w)\mathbf S_W \mathbf w\]</div>
 <p>注意到上式中括号部分为标量，且</p>
-<p>\begin{aligned}\mathbf S_B \mathbf w &amp;=\ (\boldsymbol {\mu_2-\mu_1}){(\boldsymbol {\mu_2-\mu_1})^{\top} \mathbf w}
-\ &amp; \propto \ \boldsymbol {\mu_2-\mu_1}
-\end{aligned}</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}\mathbf S_B \mathbf w &amp;=\ (\boldsymbol {\mu_2-\mu_1})\{(\boldsymbol {\mu_2-\mu_1})^{\top} \mathbf w\}
+\\ &amp; \propto \ \boldsymbol {\mu_2-\mu_1}
+\end{aligned}\end{split}\]</div>
 <p>（注：上式右侧大括号部分为标量）</p>
 <p>所以</p>
 <div class="math notranslate nohighlight">
 \[\mathbf S_W \mathbf w \propto \ \boldsymbol {\mu_2-\mu_1}\]</div>
 <p>如果 <span class="math notranslate nohighlight">\(\mathbf S_W\)</span> 满秩，则有</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5ae88f0a-8cde-485e-a2a7-3570c5e712f3">
-<span class="eqno">(10)<a class="headerlink" href="#equation-5ae88f0a-8cde-485e-a2a7-3570c5e712f3" title="Permalink to this equation">¶</a></span>\[\begin{equation}\mathbf w \propto \ \mathbf S_W^{-1} (\boldsymbol {\mu_2-\mu_1}) \end{equation}\]</div>
-<p>（6）式表示最具有区分性的 <span class="math notranslate nohighlight">\(\mathbf w\)</span> 应与这两类样本中心的连线 <span class="math notranslate nohighlight">\(\boldsymbol {\mu_2-\mu_1}\)</span> 大致同向，但应基于类内方差矩阵 <span class="math notranslate nohighlight">\(\mathbf S_W\)</span> 进行调整。</p>
-<p>:::{note}
-在我们的直观理解上，判别超平面表示为</p>
-<div class="math notranslate nohighlight">
-\[y=\mathbf w \boldsymbol \phi=0\]</div>
-<p>例如 <span class="math notranslate nohighlight">\(y&gt;0\)</span> 表示 <span class="math notranslate nohighlight">\(C_1\)</span> 类，<span class="math notranslate nohighlight">\(y&lt;0\)</span> 表示 <span class="math notranslate nohighlight">\(C_2\)</span> 类，显然判别超平面大致垂直于这两类样本中心连线，而超平面的法线方向就是 <span class="math notranslate nohighlight">\(\mathbf w\)</span>，所以 <span class="math notranslate nohighlight">\(\mathbf w\)</span> 大致与中心连线 <span class="math notranslate nohighlight">\(\boldsymbol {\mu_2-\mu_1}\)</span> 同向。
-:::</p>
+<div class="math notranslate nohighlight" id="equation-fisher6">
+<span class="eqno">(10)<a class="headerlink" href="#equation-fisher6" title="Permalink to this equation">¶</a></span>\[\mathbf w \propto \ \mathbf S_W^{-1} (\boldsymbol {\mu_2-\mu_1})\]</div>
+<p><a class="reference internal" href="#equation-fisher6">(10)</a> 式表示最具有区分性的 <span class="math notranslate nohighlight">\(\mathbf w\)</span> 应与这两类样本中心的连线 <span class="math notranslate nohighlight">\(\boldsymbol {\mu_2-\mu_1}\)</span> 大致同向，但应基于类内方差矩阵 <span class="math notranslate nohighlight">\(\mathbf S_W\)</span> 进行调整。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>在我们的直观理解上，判别超平面表示为
+<span class="math notranslate nohighlight">\(y=\mathbf w \boldsymbol \phi=0\)</span>
+，例如 <span class="math notranslate nohighlight">\(y&gt;0\)</span> 表示 <span class="math notranslate nohighlight">\(C_1\)</span> 类，<span class="math notranslate nohighlight">\(y&lt;0\)</span> 表示 <span class="math notranslate nohighlight">\(C_2\)</span> 类，显然判别超平面大致垂直于这两类样本中心连线，而超平面的法线方向就是 <span class="math notranslate nohighlight">\(\mathbf w\)</span>，所以 <span class="math notranslate nohighlight">\(\mathbf w\)</span> 大致与中心连线 <span class="math notranslate nohighlight">\(\boldsymbol {\mu_2-\mu_1}\)</span> 同向。</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
