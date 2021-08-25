@@ -7,3 +7,6 @@ parts:
   - caption: 概述
     chapters:
     - file: intro/intro
+  - caption: 线性模型
+    chapters:
+    - file: linear/Fisher
