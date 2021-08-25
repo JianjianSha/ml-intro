@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>机器学习概述 &#8212; 机器学习导论笔记</title>
+    <title>Fisher准则 &#8212; 机器学习导论笔记</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,7 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Fisher准则" href="../linear/Fisher.html" />
-    <link rel="prev" title="介绍" href="../index.html" />
+    <link rel="prev" title="机器学习概述" href="../intro/intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -89,9 +88,9 @@
   概述
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro/intro.html">
    机器学习概述
   </a>
  </li>
@@ -101,9 +100,9 @@
   线性模型
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../linear/Fisher.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Fisher准则
   </a>
  </li>
@@ -148,7 +147,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/intro/intro.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/linear/Fisher.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -168,7 +167,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/JianjianSha/ml-intro/issues/new?title=Issue%20on%20page%20%2Fintro/intro.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/JianjianSha/ml-intro/issues/new?title=Issue%20on%20page%20%2Flinear/Fisher.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -189,38 +188,6 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   1.8 机器学习基础
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
-     1.8.2 参数过拟合、交叉验证与正则化
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     1.8.3 结构过拟合与模型选择
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id5">
-       预测误差
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -229,72 +196,56 @@
         
               <div>
                 
-  <div class="section" id="id1">
-<h1>机器学习概述<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id2">
-<h2>1.8 机器学习基础<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id3">
-<h3>1.8.2 参数过拟合、交叉验证与正则化<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<p>防止过拟合的方法：</p>
-<ol class="simple">
-<li><p>在训练过程中用测试集来检测模型性能，当模型性能在测试集上开始下降时，认为出现过拟合，停止训练</p></li>
-<li><p>在目标函数中加入正则项，控制参数的取值范围</p></li>
-</ol>
-</div>
-<div class="section" id="id4">
-<h3>1.8.3 结构过拟合与模型选择<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<p>设测试数据 $\mathbf x$ 的真实目标值为 $h(\mathbf x)$，观察到的目标值 $t$，模型预测值 $y(\mathbf x)$，记 $\mathbf x$ 和 $t$ 的联合分布为 $p(\mathbf x, t)$，那么目标值与预测值之间的误差（方差）为，</p>
+  <div class="section" id="fisher">
+<h1>Fisher准则<a class="headerlink" href="#fisher" title="Permalink to this headline">¶</a></h1>
+<p>以二分类为例，训练集为 $D={(\boldsymbol \phi_n,t_n):n=1,2,…,N}, \ t_n \in {C_1, C_2}$，通过线性映射投影到一维空间 $y$，</p>
 <p>$$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7c3b0ea6-ea2b-46c8-8c92-0ad9da90ada4">
-<span class="eqno">(1)<a class="headerlink" href="#equation-7c3b0ea6-ea2b-46c8-8c92-0ad9da90ada4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-\begin{align*}
-&amp;\int\int(y(\mathbf x)-t)^2 p(\mathbf x, t)d\mathbf x dt
-\\ =&amp; \int\int(y(\mathbf x)-h(\mathbf x)+h(\mathbf x)-t)^2 p(\mathbf x, t)d\mathbf x dt 
-\\ =&amp; \int\int (y(\mathbf x)-h(\mathbf x))^2p(\mathbf x, t)d\mathbf x dt +\int\int (h(\mathbf x)-t)^2p(\mathbf x, t)d\mathbf x dt
-\\=&amp;\int (y(\mathbf x)-h(\mathbf x))^2p(\mathbf x)d\mathbf x + \int\int (h(\mathbf x)-t)^2p(\mathbf x, t)d\mathbf x dt
-\end{align*} 
+<div class="amsmath math notranslate nohighlight" id="equation-dcde6458-b29b-466e-80e8-a22e2104dd39">
+<span class="eqno">(4)<a class="headerlink" href="#equation-dcde6458-b29b-466e-80e8-a22e2104dd39" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+   y=\mathbf w^{\top} \boldsymbol \phi
 \end{equation}\]</div>
 <p>$$</p>
-<p>我们假设目标值 $t$ 符合以 $h(\mathbf x)$ 为中心的正态分布，根据</p>
+<p>Fisher 准则定义如下区分性度量：</p>
+<p>$$\begin{equation}L(\mathbf w)=\frac {(m_1-m_2)^2} {\sigma_1^2+\sigma_2^2} \end{equation}$$</p>
+<p>上式中 $m_1, m_2$ 是 $C_1, C_2$ 的样本点在映射空间（这里是一维）的均值，$\sigma_1^2, \sigma_2^2$ 是映射空间的方差，（2）式表示类间距离越大，类内分散程度越小，则这两类区分性越强。</p>
+<p>映射空间 $C_1$ 样本集合记为 $D_1$，数量记为 $N_1=|D_1|$，均值为</p>
+<p>$$m_1=\frac 1 {N_1} \sum_{\boldsymbol \phi_i \in D_1} \mathbf w^{\top} \boldsymbol \phi_i=\mathbf w^{\top} \boldsymbol \mu_1$$</p>
+<p>其中原始空间 $C_1$ 样本均值为</p>
+<p>$$\boldsymbol \mu_1 = \frac 1 {N_1} \sum_{\boldsymbol \phi_i \in D_1} \boldsymbol \phi_i$$</p>
+<p>于是</p>
+<p>$$(m_2-m_1)^2=[\mathbf w^{\top}(\boldsymbol {\mu_2-\mu_1})]^2=\mathbf w^{\top} \mathbf S_{B} \mathbf w$$</p>
+<p>其中</p>
+<p>$$\begin{equation}\mathbf S_{B}=(\boldsymbol {\mu_2-\mu_1})(\boldsymbol {\mu_2-\mu_1})^{\top} \end{equation}$$</p>
+<p>另一方面，映射空间 $C_1$ 样本方差为</p>
+<p>$$\sigma_1^2=\frac 1 {N_1} \sum (y_i - m_1)^2=\frac 1 {N_1} \sum (\mathbf w^{\top}(\boldsymbol {\phi_i - \mu_1}))^2 = \frac 1 {N_1} \sum \mathbf w^{\top} (\boldsymbol {\phi_i-\mu_1})(\boldsymbol {\phi_i-\mu_1})^{\top} \mathbf w$$</p>
+<p>于是</p>
+<p>$$\sigma_1^2+\sigma_2^2=\mathbf w^{\top} \mathbf S_W \mathbf w$$</p>
+<p>其中</p>
+<p>$$\begin{equation}\mathbf S_W=\frac 1{N_1} \sum_{\boldsymbol \phi_i \in D_1} (\boldsymbol {\phi_i-\mu_1})(\boldsymbol {\phi_i-\mu_1})^{\top} + \frac 1 {N_2} \sum_{\boldsymbol \phi_i \in D_2} (\boldsymbol {\phi_i-\mu_2})(\boldsymbol {\phi_i-\mu_2})^{\top} \end{equation}$$</p>
+<p>综上 （2）式为</p>
+<p>$$\begin{equation}L(\mathbf w)=\frac {\mathbf w^{\top} \mathbf S_{B} \mathbf w} {\mathbf w^{\top} \mathbf S_W \mathbf w} \end{equation}$$</p>
+<p>对（5）式中的 $\mathbf w$ 进行优化，取梯度并令其等于 0，得到</p>
+<p>$$\nabla_{\mathbf w} L(\mathbf w)=\frac {\mathbf S_B \mathbf w(\mathbf w^{\top} \mathbf S_W \mathbf w)-(\mathbf w^{\top} \mathbf S_{B} \mathbf w)\mathbf S_W \mathbf w} {(\mathbf w^{\top} \mathbf S_W \mathbf w)^2}=0$$</p>
+<p>整理得</p>
+<p>$$\mathbf S_B \mathbf w(\mathbf w^{\top} \mathbf S_W \mathbf w)=(\mathbf w^{\top} \mathbf S_{B} \mathbf w)\mathbf S_W \mathbf w$$</p>
+<p>注意到上式中括号部分为标量，且</p>
 <p>$$
-p(\mathbf x, t)=p(\mathbf x)p(t|\mathbf x)
-$$</p>
-<p>于是，上式中第二个等式中交叉项</p>
-<p>$$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-897e0a64-3adb-48f1-881b-d424694841a5">
-<span class="eqno">(2)<a class="headerlink" href="#equation-897e0a64-3adb-48f1-881b-d424694841a5" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-\begin{align*}
-&amp;\int\int 2(y(\mathbf x)-h(\mathbf x))(h(\mathbf x)-t)p(\mathbf x, t)d\mathbf x dt
-\\=&amp;\int2(y(\mathbf x)-h(\mathbf x)) \left(\int(h(\mathbf x)-t)p(t|\mathbf x) dt \right) p(\mathbf x) d\mathbf x
-\\=&amp;\int2(y(\mathbf x)-h(\mathbf x)) \left(h(\mathbf x)-\int t \cdot p(t|\mathbf x) dt \right) p(\mathbf x) d\mathbf x
-\\=&amp;\int2(y(\mathbf x)-h(\mathbf x)) \left(h(\mathbf x)-h(\mathbf x) \right) p(\mathbf x) d\mathbf x
-\\=&amp; 0
-\end{align*}
-\end{equation}\]</div>
-<p>$$</p>
-<p>（2）式倒数第二个等式成立是因为随机变量 $t$ 符合正态分布，它的期望值等于中心值 $h(\mathbf x)$，于是（1）式的第二个等式成立。</p>
-<p>根据（1）式可知，误差可分解为预测误差和噪声误差，前者与所选模型有关，后者与数据噪声有关。</p>
-<div class="section" id="id5">
-<h4>预测误差<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
-<p>预测函数是通过某一数据集 $D$ 训练出来的故可写为 $y(\mathbf x;D)$，由于不同的数据集导致训练模型也会不同，考虑模型预测的期望值 $\mathbb E_D[y(\mathbf x; D)]$，那么预测误差如下，</p>
-<p>$$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2bde190b-6f5c-48b0-832a-002408d78df4">
-<span class="eqno">(3)<a class="headerlink" href="#equation-2bde190b-6f5c-48b0-832a-002408d78df4" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-\begin{aligned}
-(y(\mathbf x;D)-h(\mathbf x))^2&amp;=\{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]+\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\}^2
-\\&amp;=\{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]\}^2+\{\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\}^2
-\\ &amp; \quad + 2\{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]\}\{\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\}
+\begin{aligned}\mathbf S_B \mathbf w &amp;=\ (\boldsymbol {\mu_2-\mu_1}){(\boldsymbol {\mu_2-\mu_1})^{\top} \mathbf w}
+\ &amp; \propto \ \boldsymbol {\mu_2-\mu_1}
 \end{aligned}
-\end{equation}\]</div>
-<p>$$</p>
-<p>对 $D$ 取期望，不难知道 $\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)$ 对 $D$ 而言是常数，且有</p>
-<p>$$\mathbb E_D{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]}=\mathbb E_D[y(\mathbf x; D)]-\mathbb E_D[y(\mathbf x; D)]=0$$</p>
-<p>于是（3）式两边对 $D$ 取期望，得到</p>
-<p>$$\begin{equation}\mathbb E_D[y(\mathbf x; D)-h(\mathbf x)]^2={\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)}^2+\mathbb E_D{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]}^2 \end{equation}$$</p>
-<p>（4）式右侧第一项是预测期望与真实值之间的差距，这个误差来源于预测模型和真实模型之间的偏差，第二项是不同训练集得到的模型产生的预测波动（方差），反映了模型对训练数据的敏感度。</p>
-</div>
-</div>
-</div>
+$$</p>
+<p>（注：上式右侧大括号部分为标量）</p>
+<p>所以</p>
+<p>$$\mathbf S_W \mathbf w \propto \ \boldsymbol {\mu_2-\mu_1}$$</p>
+<p>如果 $\mathbf S_W$ 满秩，则有</p>
+<p>$$\begin{equation}\mathbf w \propto \ \mathbf S_W^{-1} (\boldsymbol {\mu_2-\mu_1}) \end{equation}$$</p>
+<p>（6）式表示最具有区分性的 $\mathbf w$ 应与这两类样本中心的连线 $\boldsymbol {\mu_2-\mu_1}$ 大致同向，但应基于类内方差矩阵 $\mathbf S_W$ 进行调整。</p>
+<p>:::{note}
+在我们的直观理解上，判别超平面表示为</p>
+<div class="math notranslate nohighlight">
+\[y=\mathbf w \boldsymbol \phi=0\]</div>
+<p>例如 $y&gt;0$ 表示 $C_1$ 类，$y&lt;0$ 表示 $C_2$ 类，显然判别超平面大致垂直于这两类样本中心连线，而超平面的法线方向就是 $\mathbf w$，所以 $\mathbf w$ 大致与中心连线 $\boldsymbol {\mu_2-\mu_1}$ 同向。
+:::</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -310,7 +261,7 @@ $$</p>
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./intro"
+            path: "./linear"
         },
         predefinedOutput: true
     }
@@ -322,8 +273,7 @@ $$</p>
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">介绍</a>
-    <a class='right-next' id="next-link" href="../linear/Fisher.html" title="next page">Fisher准则</a>
+    <a class='left-prev' id="prev-link" href="../intro/intro.html" title="previous page">机器学习概述</a>
 
         </div>
         
