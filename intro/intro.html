@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Markdown Files &#8212; 机器学习导论笔记</title>
+    <title>机器学习概述 &#8212; 机器学习导论笔记</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -49,8 +49,11 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Welcome to your Jupyter Book" href="../index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -85,9 +88,9 @@
   概述
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro/intro.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    机器学习概述
   </a>
  </li>
@@ -132,7 +135,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/docs/markdown.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/intro/intro.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -152,7 +155,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/JianjianSha/ml-intro/issues/new?title=Issue%20on%20page%20%2Fdocs/markdown.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/JianjianSha/ml-intro/issues/new?title=Issue%20on%20page%20%2Fintro/intro.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -179,33 +182,18 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-is-myst">
-   What is MyST?
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#what-are-roles-and-directives">
-   What are roles and directives?
+  <a class="reference internal nav-link" href="#id2">
+   1.8 机器学习基础
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-a-directive">
-     Using a directive
+    <a class="reference internal nav-link" href="#id3">
+     1.8.2 参数过拟合、交叉验证与正则化
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#using-a-role">
-     Using a role
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#adding-a-citation">
-     Adding a citation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#executing-code-in-your-markdown-files">
-     Executing code in your markdown files
+    <a class="reference internal nav-link" href="#id4">
+     1.8.3 结构过拟合与模型选择
     </a>
    </li>
   </ul>
@@ -221,111 +209,52 @@
         
               <div>
                 
-  <div class="section" id="markdown-files">
-<h1>Markdown Files<a class="headerlink" href="#markdown-files" title="Permalink to this headline">¶</a></h1>
-<p>Whether you write your book’s content in Jupyter Notebooks (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) or
-in regular markdown files (<code class="docutils literal notranslate"><span class="pre">.md</span></code>), you’ll write in the same flavor of markdown
-called <strong>MyST Markdown</strong>.</p>
-<div class="section" id="what-is-myst">
-<h2>What is MyST?<a class="headerlink" href="#what-is-myst" title="Permalink to this headline">¶</a></h2>
-<p>MyST stands for “Markedly Structured Text”. It
-is a slight variation on a flavor of markdown called “CommonMark” markdown,
-with small syntax extensions to allow you to write <strong>roles</strong> and <strong>directives</strong>
-in the Sphinx ecosystem.</p>
+  <div class="section" id="id1">
+<h1>机器学习概述<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>1.8 机器学习基础<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>1.8.2 参数过拟合、交叉验证与正则化<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>防止过拟合的方法：</p>
+<ol class="simple">
+<li><p>在训练过程中用测试集来检测模型性能，当模型性能在测试集上开始下降时，认为出现过拟合，停止训练</p></li>
+<li><p>在目标函数中加入正则项，控制参数的取值范围</p></li>
+</ol>
 </div>
-<div class="section" id="what-are-roles-and-directives">
-<h2>What are roles and directives?<a class="headerlink" href="#what-are-roles-and-directives" title="Permalink to this headline">¶</a></h2>
-<p>Roles and directives are two of the most powerful tools in Jupyter Book. They
-are kind of like functions, but written in a markup language. They both
-serve a similar purpose, but <strong>roles are written in one line</strong>, whereas
-<strong>directives span many lines</strong>. They both accept different kinds of inputs,
-and what they do with those inputs depends on the specific role or directive
-that is being called.</p>
-<div class="section" id="using-a-directive">
-<h3>Using a directive<a class="headerlink" href="#using-a-directive" title="Permalink to this headline">¶</a></h3>
-<p>At its simplest, you can insert a directive into your book’s content like so:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```{mydirectivename}
-My directive content
-```
-</pre></div>
-</div>
-<p>This will only work if a directive with name <code class="docutils literal notranslate"><span class="pre">mydirectivename</span></code> already exists
-(which it doesn’t). There are many pre-defined directives associated with
-Jupyter Book. For example, to insert a note box into your content, you can
-use the following directive:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```{note}
-Here is a note
-```
-</pre></div>
-</div>
-<p>This results in:</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Here is a note</p>
-</div>
-<p>In your built book.</p>
-<p>For more information on writing directives, see the
-<a class="reference external" href="https://myst-parser.readthedocs.io/">MyST documentation</a>.</p>
-</div>
-<div class="section" id="using-a-role">
-<h3>Using a role<a class="headerlink" href="#using-a-role" title="Permalink to this headline">¶</a></h3>
-<p>Roles are very similar to directives, but they are less-complex and written
-entirely on one line. You can insert a role into your book’s content with
-this pattern:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Some content {rolename}`and here is my role&#39;s content!`
-</pre></div>
-</div>
-<p>Again, roles will only work if <code class="docutils literal notranslate"><span class="pre">rolename</span></code> is a valid role’s name. For example,
-the <code class="docutils literal notranslate"><span class="pre">doc</span></code> role can be used to refer to another page in your book. You can
-refer directly to another page by its relative path. For example, the
-role syntax <code class="docutils literal notranslate"><span class="pre">{doc}`intro`</span></code> will result in: <span class="xref std std-doc">intro</span>.</p>
-<p>For more information on writing roles, see the
-<a class="reference external" href="https://myst-parser.readthedocs.io/">MyST documentation</a>.</p>
-</div>
-<div class="section" id="adding-a-citation">
-<h3>Adding a citation<a class="headerlink" href="#adding-a-citation" title="Permalink to this headline">¶</a></h3>
-<p>You can also cite references that are stored in a <code class="docutils literal notranslate"><span class="pre">bibtex</span></code> file. For example,
-the following syntax: <code class="docutils literal notranslate"><span class="pre">{cite}`holdgraf_evidence_2014`</span></code> will render like
-this: <span id="id1">[<a class="reference internal" href="#id3">HdHPK14</a>]</span>.</p>
-<p>Moreoever, you can insert a bibliography into your page with this syntax:
-The <code class="docutils literal notranslate"><span class="pre">{bibliography}</span></code> directive must be used for all the <code class="docutils literal notranslate"><span class="pre">{cite}</span></code> roles to
-render properly.
-For example, if the references for your book are stored in <code class="docutils literal notranslate"><span class="pre">references.bib</span></code>,
-then the bibliography is inserted with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```{bibliography}
-```
-</pre></div>
-</div>
-<p>Resulting in a rendered bibliography that looks like:</p>
-<p id="id2"><dl class="citation">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">HdHPK14</a></span></dt>
-<dd><p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In <em>International Conference on Cognitive Neuroscience</em>. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.</p>
-</dd>
-</dl>
-</p>
-</div>
-<div class="section" id="executing-code-in-your-markdown-files">
-<h3>Executing code in your markdown files<a class="headerlink" href="#executing-code-in-your-markdown-files" title="Permalink to this headline">¶</a></h3>
-<p>If you’d like to include computational content inside these markdown files,
-you can use MyST Markdown to define cells that will be executed when your
-book is built. Jupyter Book uses <em>jupytext</em> to do this.</p>
-<p>First, add Jupytext metadata to the file. For example, to add Jupytext metadata
-to this markdown page, run this command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span> <span class="n">myst</span> <span class="n">init</span> <span class="n">markdown</span><span class="o">.</span><span class="n">md</span>
-</pre></div>
-</div>
-<p>Once a markdown file has Jupytext metadata in it, you can add the following
-directive to run the code at build time:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```{code-cell}
-print(&quot;Here is some code to execute&quot;)
-```
-</pre></div>
-</div>
-<p>When your book is built, the contents of any <code class="docutils literal notranslate"><span class="pre">{code-cell}</span></code> blocks will be
-executed with your default Jupyter kernel, and their outputs will be displayed
-in-line with the rest of your content.</p>
-<p>For more information about executing computational content with Jupyter Book,
-see <a class="reference external" href="https://myst-nb.readthedocs.io/">The MyST-NB documentation</a>.</p>
+<div class="section" id="id4">
+<h3>1.8.3 结构过拟合与模型选择<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>设测试数据 <span class="math notranslate nohighlight">\(\mathbf x\)</span> 的真实目标值为 <span class="math notranslate nohighlight">\(h(\mathbf x)\)</span>，观察到的目标值 <span class="math notranslate nohighlight">\(t\)</span>，模型预测值 <span class="math notranslate nohighlight">\(y(\mathbf x)\)</span>，记 <span class="math notranslate nohighlight">\(\mathbf x\)</span> 和 <span class="math notranslate nohighlight">\(t\)</span> 的联合分布为 <span class="math notranslate nohighlight">\(p(\mathbf x, t)\)</span>，那么目标值与预测值之间的误差（方差）为，
+$<span class="math notranslate nohighlight">\(\begin{aligned}
+&amp;\int\int(y(\mathbf x)-t)^2 p(\mathbf x, t)d\mathbf x dt
+\\ =&amp; \int\int(y(\mathbf x)-h(\mathbf x)+h(\mathbf x)-t)^2 p(\mathbf x, t)d\mathbf x dt 
+\\ =&amp; \int\int (y(\mathbf x)-h(\mathbf x))^2p(\mathbf x, t)d\mathbf x dt +\int\int (h(\mathbf x)-t)^2p(\mathbf x, t)d\mathbf x dt
+\\=&amp;\int (y(\mathbf x)-h(\mathbf x))^2p(\mathbf x)d\mathbf x + \int\int (h(\mathbf x)-t)^2p(\mathbf x, t)d\mathbf x dt
+\end{aligned} \qquad (1)\)</span>$</p>
+<p>我们假设目标值 <span class="math notranslate nohighlight">\(t\)</span> 符合以 <span class="math notranslate nohighlight">\(h(\mathbf x)\)</span> 为中心的正态分布，根据</p>
+<div class="math notranslate nohighlight">
+\[p(\mathbf x, t)=p(\mathbf x)p(t|\mathbf x)\]</div>
+<p>于是，上式中第二个等式中交叉项
+$<span class="math notranslate nohighlight">\(\begin{aligned}
+&amp;\int\int 2(y(\mathbf x)-h(\mathbf x))(h(\mathbf x)-t)p(\mathbf x, t)d\mathbf x dt
+\\=&amp;\int2(y(\mathbf x)-h(\mathbf x)) \left(\int(h(\mathbf x)-t)p(t|\mathbf x) dt \right) p(\mathbf x) d\mathbf x
+\\=&amp;\int2(y(\mathbf x)-h(\mathbf x)) \left(h(\mathbf x)-\int t \cdot p(t|\mathbf x) dt \right) p(\mathbf x) d\mathbf x
+\\=&amp;\int2(y(\mathbf x)-h(\mathbf x)) \left(h(\mathbf x)-h(\mathbf x) \right) p(\mathbf x) d\mathbf x
+\\=&amp; 0
+\end{aligned} \qquad (2)\)</span>$</p>
+<p>（2）式倒数第二个等式成立是因为随机变量 <span class="math notranslate nohighlight">\(t\)</span> 符合正态分布，它的期望值等于中心值 <span class="math notranslate nohighlight">\(h(\mathbf x)\)</span>，于是（1）式的第二个等式成立。</p>
+<p>根据（1）式可知，误差可分解为预测误差和噪声误差，前者与所选模型有关，后者与数据噪声有关。</p>
+<p><strong>预测误差</strong></p>
+<p>预测函数是通过某一数据集 <span class="math notranslate nohighlight">\(D\)</span> 训练出来的故可写为 <span class="math notranslate nohighlight">\(y(\mathbf x;D)\)</span>，由于不同的数据集导致训练模型也会不同，考虑模型预测的期望值 <span class="math notranslate nohighlight">\(\mathbb E_D[y(\mathbf x; D)]\)</span>，那么预测误差如下，
+$<span class="math notranslate nohighlight">\(\begin{aligned}
+(y(\mathbf x;D)-h(\mathbf x))^2&amp;=\{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]+\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\}^2
+\\&amp;=\{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]\}^2+\{\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\}^2
+\\ &amp; \quad + 2\{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]\}\{\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\}
+\end{aligned} \quad(3)\)</span>$</p>
+<p>对 <span class="math notranslate nohighlight">\(D\)</span> 取期望，不难知道 <span class="math notranslate nohighlight">\(\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\)</span> 对 <span class="math notranslate nohighlight">\(D\)</span> 而言是常数，且有
+$<span class="math notranslate nohighlight">\(\mathbb E_D\{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]\}=\mathbb E_D[y(\mathbf x; D)]-\mathbb E_D[y(\mathbf x; D)]=0\)</span>$</p>
+<p>于是（3）式两边对 <span class="math notranslate nohighlight">\(D\)</span> 取期望，得到
+$<span class="math notranslate nohighlight">\(\mathbb E_D[y(\mathbf x; D)-h(\mathbf x)]^2=\{\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\}^2+\mathbb E_D\{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]\}^2 \quad(4)\)</span>$</p>
+<p>（4）式右侧第一项是预测期望与真实值之间的差距，这个误差来源于预测模型和真实模型之间的偏差，第二项是不同训练集得到的模型产生的预测波动（方差），反映了模型对训练数据的敏感度。</p>
 </div>
 </div>
 </div>
@@ -343,7 +272,7 @@ see <a class="reference external" href="https://myst-nb.readthedocs.io/">The MyS
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./docs"
+            path: "./intro"
         },
         predefinedOutput: true
     }
@@ -355,6 +284,7 @@ see <a class="reference external" href="https://myst-nb.readthedocs.io/">The MyS
         
         <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">Welcome to your Jupyter Book</a>
 
         </div>
         
