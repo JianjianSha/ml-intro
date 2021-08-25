@@ -243,9 +243,9 @@
 </div>
 <div class="section" id="id4">
 <h3>1.8.3 结构过拟合与模型选择<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<p>设测试数据 $\mathbf x$ 的真实目标值为 $h(\mathbf x)$，观察到的目标值 $t$，模型预测值 $y(\mathbf x)$，记 $\mathbf x$ 和 $t$ 的联合分布为 $p(\mathbf x, t)$，那么目标值与预测值之间的误差（方差）为，</p>
-<div class="amsmath math notranslate nohighlight" id="equation-22de3d3b-b9fc-4585-9841-985b0e7552f1">
-<span class="eqno">(1)<a class="headerlink" href="#equation-22de3d3b-b9fc-4585-9841-985b0e7552f1" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>设测试数据 <span class="math notranslate nohighlight">\(\mathbf x\)</span> 的真实目标值为 <span class="math notranslate nohighlight">\(h(\mathbf x)\)</span>，观察到的目标值 <span class="math notranslate nohighlight">\(t\)</span>，模型预测值 <span class="math notranslate nohighlight">\(y(\mathbf x)\)</span>，记 <span class="math notranslate nohighlight">\(\mathbf x\)</span> 和 <span class="math notranslate nohighlight">\(t\)</span> 的联合分布为 <span class="math notranslate nohighlight">\(p(\mathbf x, t)\)</span>，那么目标值与预测值之间的误差（方差）为，</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b172b7fb-7668-4a35-970f-efc99eadc91e">
+<span class="eqno">(1)<a class="headerlink" href="#equation-b172b7fb-7668-4a35-970f-efc99eadc91e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \begin{aligned}
 &amp;\int\int(y(\mathbf x)-t)^2 p(\mathbf x, t)d\mathbf x dt
 \\ =&amp; \int\int(y(\mathbf x)-h(\mathbf x)+h(\mathbf x)-t)^2 p(\mathbf x, t)d\mathbf x dt 
@@ -253,11 +253,12 @@
 \\=&amp;\int (y(\mathbf x)-h(\mathbf x))^2p(\mathbf x)d\mathbf x + \int\int (h(\mathbf x)-t)^2p(\mathbf x, t)d\mathbf x dt
 \end{aligned} 
 \end{equation}\]</div>
-<p>我们假设目标值 $t$ 符合以 $h(\mathbf x)$ 为中心的正态分布，根据</p>
-<p>$$p(\mathbf x, t)=p(\mathbf x)p(t|\mathbf x)$$</p>
+<p>我们假设目标值 <span class="math notranslate nohighlight">\(t\)</span> 符合以 <span class="math notranslate nohighlight">\(h(\mathbf x)\)</span> 为中心的正态分布，根据</p>
+<div class="math notranslate nohighlight">
+\[p(\mathbf x, t)=p(\mathbf x)p(t|\mathbf x)\]</div>
 <p>于是，上式中第二个等式中交叉项</p>
-<div class="amsmath math notranslate nohighlight" id="equation-81e5c333-69d8-40ac-bbed-998bb1da6b7d">
-<span class="eqno">(2)<a class="headerlink" href="#equation-81e5c333-69d8-40ac-bbed-998bb1da6b7d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8692bd3a-838e-4f1f-88f3-c12250ba5d66">
+<span class="eqno">(2)<a class="headerlink" href="#equation-8692bd3a-838e-4f1f-88f3-c12250ba5d66" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \begin{aligned}
 &amp;\int\int 2(y(\mathbf x)-h(\mathbf x))(h(\mathbf x)-t)p(\mathbf x, t)d\mathbf x dt
 \\=&amp;\int2(y(\mathbf x)-h(\mathbf x)) \left(\int(h(\mathbf x)-t)p(t|\mathbf x) dt \right) p(\mathbf x) d\mathbf x
@@ -266,24 +267,25 @@
 \\=&amp; 0
 \end{aligned}
 \end{equation}\]</div>
-<p>（2）式倒数第二个等式成立是因为随机变量 $t$ 符合正态分布，它的期望值等于中心值 $h(\mathbf x)$，于是（1）式的第二个等式成立。</p>
+<p>（2）式倒数第二个等式成立是因为随机变量 <span class="math notranslate nohighlight">\(t\)</span> 符合正态分布，它的期望值等于中心值 <span class="math notranslate nohighlight">\(h(\mathbf x)\)</span>，于是（1）式的第二个等式成立。</p>
 <p>根据（1）式可知，误差可分解为预测误差和噪声误差，前者与所选模型有关，后者与数据噪声有关。</p>
 <div class="section" id="id5">
 <h4>预测误差<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
-<p>预测函数是通过某一数据集 $D$ 训练出来的故可写为 $y(\mathbf x;D)$，由于不同的数据集导致训练模型也会不同，考虑模型预测的期望值 $\mathbb E_D[y(\mathbf x; D)]$，那么预测误差如下，</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a496c257-e945-4ad5-8679-f9d4dc18b03e">
-<span class="eqno">(3)<a class="headerlink" href="#equation-a496c257-e945-4ad5-8679-f9d4dc18b03e" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<p>预测函数是通过某一数据集 <span class="math notranslate nohighlight">\(D\)</span> 训练出来的故可写为 <span class="math notranslate nohighlight">\(y(\mathbf x;D)\)</span>，由于不同的数据集导致训练模型也会不同，考虑模型预测的期望值 <span class="math notranslate nohighlight">\(\mathbb E_D[y(\mathbf x; D)]\)</span>，那么预测误差如下，</p>
+<div class="amsmath math notranslate nohighlight" id="equation-c805c75a-0518-4a26-b0af-d7fdf2590961">
+<span class="eqno">(3)<a class="headerlink" href="#equation-c805c75a-0518-4a26-b0af-d7fdf2590961" title="Permalink to this equation">¶</a></span>\[\begin{equation}
 \begin{aligned}
 (y(\mathbf x;D)-h(\mathbf x))^2&amp;=\{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]+\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\}^2
 \\&amp;=\{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]\}^2+\{\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\}^2
 \\ &amp; \quad + 2\{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]\}\{\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\}
 \end{aligned}
 \end{equation}\]</div>
-<p>对 $D$ 取期望，不难知道 $\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)$ 对 $D$ 而言是常数，且有</p>
-<p>$$\mathbb E_D{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]}=\mathbb E_D[y(\mathbf x; D)]-\mathbb E_D[y(\mathbf x; D)]=0$$</p>
-<p>于是（3）式两边对 $D$ 取期望，得到</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a2455e78-234a-4147-9664-9922fe632e79">
-<span class="eqno">(4)<a class="headerlink" href="#equation-a2455e78-234a-4147-9664-9922fe632e79" title="Permalink to this equation">¶</a></span>\[\begin{equation}\mathbb E_D[y(\mathbf x; D)-h(\mathbf x)]^2=\{\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\}^2+\mathbb E_D\{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]\}^2 \end{equation}\]</div>
+<p>对 <span class="math notranslate nohighlight">\(D\)</span> 取期望，不难知道 <span class="math notranslate nohighlight">\(\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\)</span> 对 <span class="math notranslate nohighlight">\(D\)</span> 而言是常数，且有</p>
+<div class="math notranslate nohighlight">
+\[\mathbb E_D \{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]\}=\mathbb E_D[y(\mathbf x; D)]-\mathbb E_D[y(\mathbf x; D)]=0\]</div>
+<p>于是（3）式两边对 <span class="math notranslate nohighlight">\(D\)</span> 取期望，得到</p>
+<div class="amsmath math notranslate nohighlight" id="equation-faa773ec-0cb3-4216-8990-ae18608aa03f">
+<span class="eqno">(4)<a class="headerlink" href="#equation-faa773ec-0cb3-4216-8990-ae18608aa03f" title="Permalink to this equation">¶</a></span>\[\begin{equation}\mathbb E_D[y(\mathbf x; D)-h(\mathbf x)]^2=\{\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\}^2+\mathbb E_D\{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]\}^2 \end{equation}\]</div>
 <p>（4）式右侧第一项是预测期望与真实值之间的差距，这个误差来源于预测模型和真实模型之间的偏差，第二项是不同训练集得到的模型产生的预测波动（方差），反映了模型对训练数据的敏感度。</p>
 </div>
 </div>

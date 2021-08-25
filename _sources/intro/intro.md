@@ -60,7 +60,7 @@ $$p(\mathbf x, t)=p(\mathbf x)p(t|\mathbf x)$$
 
 对 $D$ 取期望，不难知道 $\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)$ 对 $D$ 而言是常数，且有
 
-$$\mathbb E_D\{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]\}=\mathbb E_D[y(\mathbf x; D)]-\mathbb E_D[y(\mathbf x; D)]=0$$
+$$\mathbb E_D \{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]\}=\mathbb E_D[y(\mathbf x; D)]-\mathbb E_D[y(\mathbf x; D)]=0$$
 
 于是（3）式两边对 $D$ 取期望，得到
 
