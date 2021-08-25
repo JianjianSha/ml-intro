@@ -11,16 +11,16 @@
 
 设测试数据 $\mathbf x$ 的真实目标值为 $h(\mathbf x)$，观察到的目标值 $t$，模型预测值 $y(\mathbf x)$，记 $\mathbf x$ 和 $t$ 的联合分布为 $p(\mathbf x, t)$，那么目标值与预测值之间的误差（方差）为，
 
-$$
+
 \begin{equation}
-\begin{align*}
+\begin{aligned}
 &\int\int(y(\mathbf x)-t)^2 p(\mathbf x, t)d\mathbf x dt
 \\ =& \int\int(y(\mathbf x)-h(\mathbf x)+h(\mathbf x)-t)^2 p(\mathbf x, t)d\mathbf x dt 
 \\ =& \int\int (y(\mathbf x)-h(\mathbf x))^2p(\mathbf x, t)d\mathbf x dt +\int\int (h(\mathbf x)-t)^2p(\mathbf x, t)d\mathbf x dt
 \\=&\int (y(\mathbf x)-h(\mathbf x))^2p(\mathbf x)d\mathbf x + \int\int (h(\mathbf x)-t)^2p(\mathbf x, t)d\mathbf x dt
-\end{align*} 
+\end{aligned} 
 \end{equation}
-$$
+
 
 我们假设目标值 $t$ 符合以 $h(\mathbf x)$ 为中心的正态分布，根据
 
@@ -32,13 +32,13 @@ $$
 
 $$
 \begin{equation}
-\begin{align*}
+\begin{aligned}
 &\int\int 2(y(\mathbf x)-h(\mathbf x))(h(\mathbf x)-t)p(\mathbf x, t)d\mathbf x dt
 \\=&\int2(y(\mathbf x)-h(\mathbf x)) \left(\int(h(\mathbf x)-t)p(t|\mathbf x) dt \right) p(\mathbf x) d\mathbf x
 \\=&\int2(y(\mathbf x)-h(\mathbf x)) \left(h(\mathbf x)-\int t \cdot p(t|\mathbf x) dt \right) p(\mathbf x) d\mathbf x
 \\=&\int2(y(\mathbf x)-h(\mathbf x)) \left(h(\mathbf x)-h(\mathbf x) \right) p(\mathbf x) d\mathbf x
 \\=& 0
-\end{align*}
+\end{aligned}
 \end{equation}
 $$
 
