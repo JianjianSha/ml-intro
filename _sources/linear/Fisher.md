@@ -2,11 +2,7 @@
 
 以二分类为例，训练集为 $D=\{(\boldsymbol \phi_n,t_n):n=1,2,...,N\}, \ t_n \in \{C_1, C_2\}$，通过线性映射投影到一维空间 $y$，
 
-$$
-\begin{equation}
-   y=\mathbf w^{\top} \boldsymbol \phi
-\end{equation}
-$$
+\begin{equation}y=\mathbf w^{\top} \boldsymbol \phi\end{equation}
 
 
 Fisher 准则定义如下区分性度量：

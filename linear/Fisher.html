@@ -199,12 +199,8 @@
   <div class="section" id="fisher">
 <h1>Fisher准则<a class="headerlink" href="#fisher" title="Permalink to this headline">¶</a></h1>
 <p>以二分类为例，训练集为 $D={(\boldsymbol \phi_n,t_n):n=1,2,…,N}, \ t_n \in {C_1, C_2}$，通过线性映射投影到一维空间 $y$，</p>
-<p>$$</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dcde6458-b29b-466e-80e8-a22e2104dd39">
-<span class="eqno">(4)<a class="headerlink" href="#equation-dcde6458-b29b-466e-80e8-a22e2104dd39" title="Permalink to this equation">¶</a></span>\[\begin{equation}
-   y=\mathbf w^{\top} \boldsymbol \phi
-\end{equation}\]</div>
-<p>$$</p>
+<div class="amsmath math notranslate nohighlight" id="equation-29731eac-c5af-4fac-b3f7-160d57484f3b">
+<span class="eqno">(4)<a class="headerlink" href="#equation-29731eac-c5af-4fac-b3f7-160d57484f3b" title="Permalink to this equation">¶</a></span>\[\begin{equation}y=\mathbf w^{\top} \boldsymbol \phi\end{equation}\]</div>
 <p>Fisher 准则定义如下区分性度量：</p>
 <p>$$\begin{equation}L(\mathbf w)=\frac {(m_1-m_2)^2} {\sigma_1^2+\sigma_2^2} \end{equation}$$</p>
 <p>上式中 $m_1, m_2$ 是 $C_1, C_2$ 的样本点在映射空间（这里是一维）的均值，$\sigma_1^2, \sigma_2^2$ 是映射空间的方差，（2）式表示类间距离越大，类内分散程度越小，则这两类区分性越强。</p>
