@@ -10,7 +10,7 @@ description: >-
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
 execute:
-  execute_notebooks: cache
+  execute_notebooks: force
 
 # Define the name of the latex output file for PDF builds
 latex:
@@ -45,3 +45,4 @@ sphinx: # switch Mathjax version 2(default) to version 3 to improve the loading 
 parse:
   myst_enable_extensions:
     - amsmath
+    - dollarmath

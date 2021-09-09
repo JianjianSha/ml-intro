@@ -9,4 +9,10 @@ parts:
     - file: intro/intro
   - caption: 线性模型
     chapters:
-    - file: linear/Fisher
+    - file: linear/poly
+      sections:
+      - file: linear/Fisher
+      - file: linear/Logistic
+      - file: linear/PCA
+        sections:
+        - file: linear/PPCA
