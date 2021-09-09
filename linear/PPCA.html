@@ -1,0 +1,447 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PPCA &#8212; 机器学习导论笔记</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.5f77b4aec8189eecf79907ce328c390d.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="主成分分析" href="PCA.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">机器学习导论笔记</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  概述
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro/intro.html">
+   机器学习概述
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  线性模型
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="poly.html">
+   线性模型
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="Fisher.html">
+     Fisher准则
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Logistic.html">
+     Logistic 回归
+    </a>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="PCA.html">
+     主成分分析
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       PPCA
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/linear/PPCA.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/JianjianSha/ml-intro"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/JianjianSha/ml-intro/issues/new?title=Issue%20on%20page%20%2Flinear/PPCA.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   后验概率
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="ppca">
+<h1>PPCA<a class="headerlink" href="#ppca" title="Permalink to this headline">¶</a></h1>
+<p>运行概率知识分析理解和解释 PCA。考虑如下线性模型（因为我们这里只讨论线性模型），</p>
+<div class="math notranslate nohighlight">
+\[\mathbf t=\mathbf b+\mathbf {W x} + \boldsymbol \epsilon\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(\mathbf b\)</span> 是固定偏移量，<span class="math notranslate nohighlight">\(\mathbf t \in R^D\)</span> 是观察变量，<span class="math notranslate nohighlight">\(\mathbf W \in R^{R\times M}\)</span> 是参数，<span class="math notranslate nohighlight">\(\mathbf x \in R^M\)</span> 是符合正态分布的隐变量</p>
+<div class="math notranslate nohighlight">
+\[p(\mathbf x)=N(\mathbf x| \mathbf 0, \mathbf I)\]</div>
+<p>噪声 <span class="math notranslate nohighlight">\(\boldsymbol \epsilon\)</span> 是高斯变量</p>
+<div class="math notranslate nohighlight">
+\[p(\boldsymbol \epsilon)=N(\mathbf x|\mathbf 0, \sigma^2\mathbf I)\]</div>
+<p>这里高斯随机噪声的假设很好理解。在没有其他关于 <span class="math notranslate nohighlight">\(\mathbf x\)</span> 的已知知识时，将其假设为标准高斯随机变量是比较好的，满足了各向同性。</p>
+<p>数据 <span class="math notranslate nohighlight">\(\mathbf t\)</span> 的生成模型为：基于先验概率 <span class="math notranslate nohighlight">\(p(\mathbf x)\)</span> （这个先验概率已知）生成隐变量的采样点（但是我们不可观察其具体值），通过线性变换得到 <span class="math notranslate nohighlight">\(\mathbf {W x}\)</span>，然后加入高斯噪声 <span class="math notranslate nohighlight">\(\boldsymbol \epsilon\)</span>，最后加入位移 <span class="math notranslate nohighlight">\(\mathbf b\)</span>。</p>
+<p>现在基于最大似然估计法则估计 PPCA 的模型参数 <span class="math notranslate nohighlight">\(\mathbf W, \mathbf b, \sigma^2\)</span>。</p>
+<p>观测变量 <span class="math notranslate nohighlight">\(\mathbf t\)</span> 的期望和协方差为</p>
+<div class="math notranslate nohighlight">
+\[\mathbb E[\mathbf t]=\mathbb E[\mathbf b+\mathbf {W x} + \boldsymbol \epsilon]=\mathbf b\]</div>
+<div class="math notranslate nohighlight" id="equation-ppca1">
+<span class="eqno">(19)<a class="headerlink" href="#equation-ppca1" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{aligned} \mathbf C&amp;=\mathbb E \{(\mathbf b+\mathbf {W x} + \boldsymbol \epsilon-\mathbb E[\mathbf t])(\mathbf {W x} + \boldsymbol \epsilon-\mathbb E[\mathbf t])^{\top}\}
+\\&amp;=\mathbb E [(\mathbf {W x} + \boldsymbol \epsilon)(\mathbf {W x} + \boldsymbol \epsilon)^{\top}]
+\\&amp;=\mathbb E [\mathbf {Wxx}^{\top} \mathbf W^{\top}+ \boldsymbol {\epsilon \epsilon}^{\top}+\mathbf {Wx} \boldsymbol {\epsilon + \epsilon} (\mathbf {Wx})^{\top}]
+\\ &amp;= \mathbb E [\mathbf {Wxx}^{\top} \mathbf W^{\top}+ \boldsymbol {\epsilon \epsilon}^{\top}] + \mathbb E[\mathbf {Wx}] \mathbb E [\boldsymbol {\epsilon}] + \mathbb E[ \boldsymbol \epsilon]\mathbb E [ (\mathbf {Wx})^{\top}]
+\\ &amp;=\mathbb E [\mathbf {Wxx}^{\top} \mathbf W^{\top}+ \boldsymbol {\epsilon \epsilon}^{\top}]
+\\ &amp;= \mathbf {WW}^{\top} + \sigma^2 \mathbf I
+\end{aligned}\end{split}\]</div>
+<p>上式推导过程利用了 <span class="math notranslate nohighlight">\(\mathbf x\)</span> 与噪声 <span class="math notranslate nohighlight">\(\boldsymbol \epsilon\)</span> 相互独立，</p>
+<p>且 <span class="math notranslate nohighlight">\(\mathbb E[\mathbf {xx}^{\top}]=\mathbf C(\mathbf x)+\mathbb E^2[\mathbf x]=I, \ \mathbb E[\boldsymbol {\epsilon \epsilon}^{\top}]=\mathbf C(\boldsymbol \epsilon)+\mathbb E^2[\boldsymbol \epsilon]=\sigma^2I\)</span></p>
+<p>于是</p>
+<div class="math notranslate nohighlight">
+\[p(\mathbf t)=N(\mathbf t|\mathbf b, \mathbf C)=N(\mathbf t|\mathbf b,\mathbf {WW}^{\top} +\sigma^2 \mathbf I)\]</div>
+<p>基于最大似然法则求模型参数，取对数似然函数</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} L &amp;=\log p(D|\mathbf b, \mathbf W, \sigma^2)
+\\ &amp;=\sum_{n=1}^N \log p(\mathbf t_n | \mathbf b, \mathbf W, \sigma^2)
+\\ &amp;=-\frac {ND} 2 \log(2\pi)-\frac N 2 \log|\mathbf C|-\frac 1 2 \sum_{n=1}^N (\mathbf t_n- \mathbf b)^{\top}\mathbf C^{-1}(\mathbf t_n-\mathbf b)
+\\ &amp;=\frac N 2 \{D \log(2\pi)+\log|\mathbf C| +tr(\mathbf C^{-1}\mathbf S)\}
+\end{aligned}\end{split}\]</div>
+<p>求对 <span class="math notranslate nohighlight">\(\mathbf b\)</span> 的梯度并令其为零，</p>
+<div class="math notranslate nohighlight">
+\[\nabla_{\mathbf b}L=\sum_{n=1}^N \mathbf C^{-1}(\mathbf t_n - \mathbf b)=\mathbf 0\]</div>
+<p>两边同时左乘 <span class="math notranslate nohighlight">\(\mathbf C\)</span>，得到</p>
+<div class="math notranslate nohighlight" id="equation-ppca2">
+<span class="eqno">(20)<a class="headerlink" href="#equation-ppca2" title="Permalink to this equation">¶</a></span>\[\mathbf b_{ML}=\frac 1 N \sum_{n=1}^N \mathbf t_n\]</div>
+<p>对 <span class="math notranslate nohighlight">\(\mathbf C\)</span> 求梯度，</p>
+<div class="math notranslate nohighlight">
+\[\nabla_{\mathbf C} L = -\frac N 2 \mathbf C^{-\top} + \frac 1 2 \sum_{n=1}^N \mathbf C^{-\top}(\mathbf t_n-\mathbf b)(\mathbf t_n-\mathbf b)^{\top}\mathbf C^{-\top}=\frac N 2 \mathbf C^{-\top} \mathbf S \mathbf C^{-\top}-\frac N 2 \mathbf C^{-\top}\]</div>
+<p>对 <span class="math notranslate nohighlight">\(\mathbf W\)</span> 求梯度，</p>
+<div class="math notranslate nohighlight">
+\[d\mathbf C=dW \cdot W^{\top} + W \cdot (dW)^{\top}=d \mathbf C^{\top}\]</div>
+<p>于是</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} d L &amp;=tr\left({\frac {\partial L} {\partial \mathbf C}}^{\top} d \mathbf C\right)
+\\&amp; =tr\left({\frac {\partial L} {\partial \mathbf C}}^{\top} (dW \cdot W^{\top} + W\cdot (dW)^{\top})\right)
+\\ &amp;=tr\left({\frac {\partial L} {\partial \mathbf C}}^{\top} dW \cdot W^{\top}\right) +tr\left( {\frac {\partial L} {\partial \mathbf C}}^{\top}W \cdot (dW)^{\top}\right)
+\\ &amp;=tr\left(W^{\top}  {\frac {\partial L} {\partial \mathbf C}}^{\top} dW\right)+tr\left( { (dW)^{\top} \frac {\partial L} {\partial \mathbf C}}^{\top}W \right)
+\\ &amp;=tr\left(W^{\top}  {\frac {\partial L} {\partial \mathbf C^{\top}}} dW\right)+tr\left( { W^{\top} \frac {\partial L} {\partial \mathbf C}} dW \right)
+\\ &amp;= tr\left(W^{\top}  {\frac {\partial L} {\partial \mathbf C}} dW\right)+tr\left( { W^{\top} \frac {\partial L} {\partial \mathbf C}} dW \right)
+\\ &amp;= tr\left(2({\frac {\partial L} {\partial \mathbf C}}^{\top}W)^{\top} dW\right)
+\end{aligned}\end{split}\]</div>
+<p>所以</p>
+<div class="math notranslate nohighlight">
+\[\nabla_{\mathbf W}L={\frac {\partial L} {\partial \mathbf C}}^{\top}W=N(\mathbf C^{-1} \mathbf S \mathbf C^{-1}-\frac N 2 \mathbf C^{-1})\mathbf W=\mathbf 0\]</div>
+<p>两边左乘 <span class="math notranslate nohighlight">\(\mathbf C^{-1}\)</span> 得</p>
+<div class="math notranslate nohighlight" id="equation-ppca3">
+<span class="eqno">(21)<a class="headerlink" href="#equation-ppca3" title="Permalink to this equation">¶</a></span>\[\mathbf {SC}^{-1} \mathbf W = \mathbf W\]</div>
+<p><a class="reference internal" href="#equation-ppca3">(21)</a> 有三种可能性，我们分别讨论。</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf W=\mathbf 0\)</span></p></li>
+</ol>
+<p>此时 <span class="math notranslate nohighlight">\(\mathbf t\)</span> 变成了以 <span class="math notranslate nohighlight">\(\mathbf b\)</span> 为中心，<span class="math notranslate nohighlight">\(\mathbf I\)</span> 为协方差的多维高斯分布，与输入 <span class="math notranslate nohighlight">\(\mathbf x\)</span> 无关，显然不是我们想要的。</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf C=\mathbf S\)</span></p></li>
+</ol>
+<p>根据 <a class="reference internal" href="#equation-ppca1">(19)</a>，有</p>
+<div class="math notranslate nohighlight">
+\[\mathbf {WW}^{\top}=\mathbf S - \sigma^2 \mathbf I\]</div>
+<p>易知其解为
+$<span class="math notranslate nohighlight">\(\mathbf W=\mathbf U(\Lambda-\sigma^2\mathbf I)^{1/2}\mathbf R\)</span>$</p>
+<p>其中 <span class="math notranslate nohighlight">\(\mathbf U\)</span> 为 <span class="math notranslate nohighlight">\(\mathbf S\)</span> 的特征向量组成的方阵，<span class="math notranslate nohighlight">\(\Lambda\)</span> 为特征值组成的对角阵，<span class="math notranslate nohighlight">\(\mathbf R\)</span> 为任意的正交矩阵。</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf W \neq \mathbf 0, \ \mathbf C \neq \mathbf S\)</span></p></li>
+</ol>
+<p>将参数矩阵 <span class="math notranslate nohighlight">\(\mathbf W\)</span> 进行奇异值分解</p>
+<div class="math notranslate nohighlight">
+\[\mathbf W = \mathbf {ULV}^{\top}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(\mathbf U\)</span> 和 <span class="math notranslate nohighlight">\(\mathbf V\)</span> 维度分别为 <span class="math notranslate nohighlight">\(D \times D\)</span> 和 <span class="math notranslate nohighlight">\(M \times M\)</span> 的正交矩阵（酉矩阵），满足 <span class="math notranslate nohighlight">\(\mathbf U^{\top} \mathbf U=\mathbf {UU}^{\top}=\mathbf I_D\)</span> 和 <span class="math notranslate nohighlight">\(\mathbf V^{\top} \mathbf V=\mathbf {VV}^{\top}=\mathbf I_M\)</span>， <span class="math notranslate nohighlight">\(\mathbf L\)</span> 维度为 <span class="math notranslate nohighlight">\(D \times M\)</span>， 主对角线上元素为对应奇异值，其余元素为 0，由奇异值组成，根据 <a class="reference internal" href="#equation-ppca1">(19)</a> 有</p>
+<div class="math notranslate nohighlight" id="equation-ppca4">
+<span class="eqno">(22)<a class="headerlink" href="#equation-ppca4" title="Permalink to this equation">¶</a></span>\[\mathbf C=\mathbf {ULV}^{\top} \mathbf {VL}^{\top} \mathbf U^{\top}+\sigma^2 \mathbf I=\mathbf U \mathbf {LL}^{\top}\mathbf U^{\top}+\sigma^2 \mathbf U\mathbf U^{\top}=\mathbf U (\mathbf {LL}^{\top}+\sigma^2\mathbf I)\mathbf U^{\top}\]</div>
+<p>易得 <span class="math notranslate nohighlight">\(\mathbf C^{-1}=\mathbf U (\mathbf {LL}^{\top}+ \sigma^2\mathbf I)^{-1}\mathbf U^{\top}\)</span></p>
+<p>将上面 <span class="math notranslate nohighlight">\(\mathbf W\)</span> 和 <span class="math notranslate nohighlight">\(\mathbf C^{-1}\)</span> 代入 <a class="reference internal" href="#equation-ppca3">(21)</a> 得</p>
+<div class="math notranslate nohighlight">
+\[\mathbf {SU}(\mathbf {LL}^{\top}+\sigma^2\mathbf I)^{-1}\mathbf U^{\top} \mathbf {ULV}^{\top}=\mathbf {ULV}^{\top}\]</div>
+<p>化简得</p>
+<div class="math notranslate nohighlight" id="equation-ppca5">
+<span class="eqno">(23)<a class="headerlink" href="#equation-ppca5" title="Permalink to this equation">¶</a></span>\[\mathbf {SU}(\mathbf {LL}^{\top}+\sigma^2\mathbf I)^{-1} \mathbf L=\mathbf {UL}\]</div>
+<p>a. 如果 <span class="math notranslate nohighlight">\(l_j \neq 0\)</span>，<a class="reference internal" href="#equation-ppca5">(23)</a> 意味着
+$<span class="math notranslate nohighlight">\(\mathbf {S u}_j (l_j^2+\sigma^2)^{-1} l_j = \mathbf u_j l_j \Rightarrow \mathbf {S u}_j=(l_j^2+\sigma^2)\mathbf u_j\)</span>$</p>
+<p>这表示 <span class="math notranslate nohighlight">\(\mathbf u_j\)</span> 是 <span class="math notranslate nohighlight">\(\mathbf S\)</span> 的特征向量，对应特征值为 <span class="math notranslate nohighlight">\(\lambda_j=l_j^2+\sigma^2\)</span>，故奇异值为</p>
+<div class="math notranslate nohighlight">
+\[l_j=(\lambda_j-\sigma^2)^{1/2}\]</div>
+<p>b. 如果 <span class="math notranslate nohighlight">\(l_j = 0\)</span>，那么 <span class="math notranslate nohighlight">\(\mathbf u_j\)</span> 可以是任意的。</p>
+<p>于是，<span class="math notranslate nohighlight">\(\mathbf W\)</span> 可以写成以下形式，</p>
+<div class="math notranslate nohighlight">
+\[\mathbf W = \mathbf {ULR}\]</div>
+<p>其中，<span class="math notranslate nohighlight">\(\mathbf U\)</span> 是由 <span class="math notranslate nohighlight">\(\mathbf S\)</span> 的特征向量作为列向量组成的矩阵，<span class="math notranslate nohighlight">\(\mathbf R\)</span> 为任意 <span class="math notranslate nohighlight">\(M \times M\)</span> 的正交矩阵，<span class="math notranslate nohighlight">\(\mathbf L\)</span> 为 <span class="math notranslate nohighlight">\(D \times M\)</span> 的矩阵，主对角线上元素为 <span class="math notranslate nohighlight">\(l_j=(\lambda_j-\sigma^2)^{1/2}\)</span>，其余元素为 0。我们可以取 <span class="math notranslate nohighlight">\(\mathbf S\)</span> 的前 M 个最大特征值来近似 <span class="math notranslate nohighlight">\(\mathbf W\)</span>，</p>
+<div class="math notranslate nohighlight" id="equation-ppca6">
+<span class="eqno">(24)<a class="headerlink" href="#equation-ppca6" title="Permalink to this equation">¶</a></span>\[\mathbf W_{ML} \approx  \mathbf U_M (\Lambda -\sigma^2 \mathbf I)^{1/2} \mathbf R\]</div>
+<p>此时 <span class="math notranslate nohighlight">\(\mathbf U_M\)</span> 由 <span class="math notranslate nohighlight">\(\mathbf S\)</span> 前 M 个最大特征值对应的特征向量组成，<span class="math notranslate nohighlight">\(\Lambda\)</span> 是对应的最大 M 个特征值组成的对角阵，<span class="math notranslate nohighlight">\(\mathbf R\)</span> 是任意正交矩阵。</p>
+<p>根据 <a class="reference internal" href="#equation-ppca4">(22)</a> 和行列式的性质可知，</p>
+<div class="math notranslate nohighlight">
+\[|\mathbf C| = \prod_j (l_j^2+\sigma^2)=\prod_j \lambda_j\]</div>
+<p><span class="math notranslate nohighlight">\(\mathbf S\)</span> 根据特征值分解有 <span class="math notranslate nohighlight">\(\mathbf S = \mathbf U \Lambda \mathbf U^{\top}\)</span>，于是</p>
+<div class="math notranslate nohighlight">
+\[\mathbf C^{-1} \mathbf S = \mathbf U (\mathbf {LL}^{\top}+ \sigma^2\mathbf I)^{-1}\mathbf U^{\top} \mathbf U \Lambda \mathbf U^{\top}=\mathbf U (\mathbf {LL}^{\top}+ \sigma^2\mathbf I)^{-1}\Lambda \mathbf U^{\top}\]</div>
+<p>根据 trace 的性质 <span class="math notranslate nohighlight">\(tr(A)=\sum_i \lambda_i\)</span>，其中 <span class="math notranslate nohighlight">\(\lambda_i = eig(A)\)</span> 可知</p>
+<div class="math notranslate nohighlight">
+\[tr(\mathbf C^{-1} \mathbf S)=\sum_j (l_j^2 + \sigma^2)^{-1} \lambda_j\]</div>
+<p>由于对 <span class="math notranslate nohighlight">\(\forall j=1,\cdots, M\)</span>，有 <span class="math notranslate nohighlight">\(l_j \neq 0\)</span>； 对 <span class="math notranslate nohighlight">\(\forall j &gt; M\)</span> 有 <span class="math notranslate nohighlight">\(l_j=0\)</span>， 所以有</p>
+<div class="math notranslate nohighlight">
+\[\log |\mathbf C|=\sum_j \log \lambda_j = \sum_{j=1}^M \log\lambda_j+\sum_{j=M+1}^D \log \sigma^2=\sum_{j=1}^M \log\lambda_j+(D-M) \log \sigma^2\]</div>
+<div class="math notranslate nohighlight">
+\[tr(\mathbf C^{-1} \mathbf S)=\sum_{j=1}^M (l_j^2 + \sigma^2)^{-1} \lambda_j + \sum_{j=M+1}^D \sigma^{-2} \lambda_j=M+\sigma^{-2}\sum_{j=M+1}^D \lambda_j\]</div>
+<p>根据上面两式可知对数似然为</p>
+<div class="math notranslate nohighlight">
+\[L=-\frac N 2 \{D \log(2\pi)+\sum_{j=1}^M \log\lambda_j+(D-M) \log \sigma^2+M +\sigma^{-2}\sum_{j=M+1}^D \lambda_j\}\]</div>
+<p>对 <span class="math notranslate nohighlight">\(\sigma^2\)</span> 取梯度，令其为0，得</p>
+<div class="math notranslate nohighlight">
+\[\nabla_{\sigma^2}L=(D-M)/(\sigma^2) -\sum_{j=M+1}^D \lambda_j/(\sigma^2)^2=0\]</div>
+<p>解得</p>
+<div class="math notranslate nohighlight" id="equation-ppca7">
+<span class="eqno">(25)<a class="headerlink" href="#equation-ppca7" title="Permalink to this equation">¶</a></span>\[\sigma_{ML}^2=\frac 1 {D-M}\sum_{j=M+1}^D \lambda_j\]</div>
+<div class="section" id="id1">
+<h2>后验概率<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>从观察变量 <span class="math notranslate nohighlight">\(\mathbf t\)</span> 推理出隐变量 <span class="math notranslate nohighlight">\(\mathbf x\)</span>，需要求后验概率 <span class="math notranslate nohighlight">\(p(\mathbf {x|t})\)</span>，由于先验概率 <span class="math notranslate nohighlight">\(p(\mathbf x)\)</span> 和条件概率 <span class="math notranslate nohighlight">\(p(\mathbf {t|x})\)</span> 都是高斯分布，故后验概率也是高斯分布，</p>
+<div class="math notranslate nohighlight">
+\[p(\mathbf {x|t})=\frac {p(\mathbf x) p(\mathbf {t|x})} {p(\mathbf t)}\]</div>
+<p>归一化因子我们暂且忽略，仅看 <span class="math notranslate nohighlight">\(\exp\)</span> 那一项，于是上式可写为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}p(\mathbf {x|t}) &amp;\propto \exp \{-\frac 1 2[\mathbf x^{\top} \mathbf x + \frac 1 {\sigma^2}(\mathbf {t- b - Wx})^{\top}(\mathbf {t- b - Wx})-(\mathbf {t-b})^{\top}\mathbf C^{-1}(\mathbf {t-b})]\}
+\\&amp; \propto \exp \{-\frac 1 {2\sigma^2} [\mathbf x^{\top}(\mathbf W^{\top}\mathbf W+\sigma^2 \mathbf I)\mathbf x-(\mathbf {t-b})^{\top}\mathbf {Wx}- \mathbf x^{\top}\mathbf W^{\top}(\mathbf {t-b})]\}
+\\ &amp; \propto \exp\{-\frac 1 2 [\mathbf x-\mathbf M^{-1}\mathbf W^{\top}(\mathbf {t-b})]^{\top} \frac {\mathbf M}{\sigma^2} [\mathbf x-\mathbf M^{-1}\mathbf W^{\top}(\mathbf {t-b})]\}
+\\ &amp;=N(\mathbf x|\mathbf M^{-1}\mathbf W^{\top}(\mathbf {t-b}), \sigma^2\mathbf M^{-1})
+\end{aligned}\end{split}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(\mathbf M=\mathbf W^{\top}\mathbf W+\sigma^2 \mathbf I\)</span>，且由于 <span class="math notranslate nohighlight">\(\mathbf M^{\top}=\mathbf M\)</span>，故 <span class="math notranslate nohighlight">\((\mathbf M^{-1})^{\top}=(\mathbf M^{\top})^{-1}=\mathbf M^{-1}\)</span>。</p>
+<p>上式为后验概率，对给定一个观测变量 <span class="math notranslate nohighlight">\(\mathbf t\)</span>，基于最大后验（MAP）准则确定一个最能描述 <span class="math notranslate nohighlight">\(\mathbf t\)</span> 的隐变量 <span class="math notranslate nohighlight">\(\mathbf x\)</span>，由于该后验概率是高斯分布，MAP 估计等同于均值，于是有</p>
+<div class="math notranslate nohighlight">
+\[\mathbf x_{MAP}|\mathbf t=\mathbf M^{-1}\mathbf W^{\top}(\mathbf {t-b})=(\mathbf W^{\top}\mathbf W+\sigma^2 \mathbf I)^{-1}\mathbf W^{\top}(\mathbf {t-b})\]</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./linear"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="PCA.html" title="previous page">主成分分析</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By JianjianSha<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

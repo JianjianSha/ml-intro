@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>机器学习概述 &#8212; 机器学习导论笔记</title>
+    <title>主成分分析 &#8212; 机器学习导论笔记</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="线性模型" href="../linear/poly.html" />
-    <link rel="prev" title="介绍" href="../index.html" />
+    <link rel="next" title="PPCA" href="PPCA.html" />
+    <link rel="prev" title="Logistic 回归" href="Logistic.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -89,9 +89,9 @@
   概述
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro/intro.html">
    机器学习概述
   </a>
  </li>
@@ -101,39 +101,39 @@
   线性模型
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../linear/poly.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="poly.html">
    线性模型
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="../linear/Fisher.html">
+    <a class="reference internal" href="Fisher.html">
      Fisher准则
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../linear/Logistic.html">
+    <a class="reference internal" href="Logistic.html">
      Logistic 回归
     </a>
    </li>
-   <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../linear/PCA.html">
+   <li class="toctree-l2 current active has-children">
+    <a class="current reference internal" href="#">
      主成分分析
     </a>
-    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
     <label for="toctree-checkbox-2">
      <i class="fas fa-chevron-down">
      </i>
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="../linear/PPCA.html">
+      <a class="reference internal" href="PPCA.html">
        PPCA
       </a>
      </li>
@@ -182,9 +182,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/intro/intro.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/linear/PCA.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -202,7 +202,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/JianjianSha/ml-intro/issues/new?title=Issue%20on%20page%20%2Fintro/intro.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/JianjianSha/ml-intro/issues/new?title=Issue%20on%20page%20%2Flinear/PCA.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -223,38 +223,6 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   1.8 机器学习基础
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
-     1.8.2 参数过拟合、交叉验证与正则化
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     1.8.3 结构过拟合与模型选择
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id5">
-       预测误差
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -264,65 +232,43 @@
               <div>
                 
   <div class="section" id="id1">
-<h1>机器学习概述<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id2">
-<h2>1.8 机器学习基础<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id3">
-<h3>1.8.2 参数过拟合、交叉验证与正则化<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<p>防止过拟合的方法：</p>
-<ol class="simple">
-<li><p>在训练过程中用测试集来检测模型性能，当模型性能在测试集上开始下降时，认为出现过拟合，停止训练</p></li>
-<li><p>在目标函数中加入正则项，控制参数的取值范围</p></li>
-</ol>
-</div>
-<div class="section" id="id4">
-<h3>1.8.3 结构过拟合与模型选择<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<p>设测试数据 <span class="math notranslate nohighlight">\(\mathbf x\)</span> 的真实目标值为 <span class="math notranslate nohighlight">\(h(\mathbf x)\)</span>，观察到的目标值 <span class="math notranslate nohighlight">\(t\)</span>，模型预测值 <span class="math notranslate nohighlight">\(y(\mathbf x)\)</span>，记 <span class="math notranslate nohighlight">\(\mathbf x\)</span> 和 <span class="math notranslate nohighlight">\(t\)</span> 的联合分布为 <span class="math notranslate nohighlight">\(p(\mathbf x, t)\)</span>，那么目标值与预测值之间的误差（方差）为，</p>
-<div class="math notranslate nohighlight" id="equation-intro1">
-<span class="eqno">(1)<a class="headerlink" href="#equation-intro1" title="Permalink to this equation">¶</a></span>\[\begin{split}
-\begin{aligned}
-&amp;\int\int(y(\mathbf x)-t)^2 p(\mathbf x, t)d\mathbf x dt
-\\ =&amp; \int\int(y(\mathbf x)-h(\mathbf x)+h(\mathbf x)-t)^2 p(\mathbf x, t)d\mathbf x dt 
-\\ =&amp; \int\int (y(\mathbf x)-h(\mathbf x))^2p(\mathbf x, t)d\mathbf x dt +\int\int (h(\mathbf x)-t)^2p(\mathbf x, t)d\mathbf x dt
-\\=&amp;\int (y(\mathbf x)-h(\mathbf x))^2p(\mathbf x)d\mathbf x + \int\int (h(\mathbf x)-t)^2p(\mathbf x, t)d\mathbf x dt
-\end{aligned}
-\end{split}\]</div>
-<p>我们假设目标值 <span class="math notranslate nohighlight">\(t\)</span> 符合以 <span class="math notranslate nohighlight">\(h(\mathbf x)\)</span> 为中心的正态分布，根据</p>
+<h1>主成分分析<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>主成分分析基于方差最大准则，使得数据在这些方向上的映射最大程度的体现原分布情况。记数据集 <span class="math notranslate nohighlight">\(D=\{\mathbf t_n \in R^D: n=1,2, \cdots , N\}\)</span>，记最具有代表性的主成分方向为 <span class="math notranslate nohighlight">\(\mathbf v_1\)</span>，令 <span class="math notranslate nohighlight">\(\mathbf v_1\)</span> 为单位向量，即 <span class="math notranslate nohighlight">\(\mathbf v_1^{\top} \mathbf v_1=1\)</span>，某数据点 <span class="math notranslate nohighlight">\(\mathbf t\)</span> 在 <span class="math notranslate nohighlight">\(\mathbf v_1\)</span> 方向上的投影为 <span class="math notranslate nohighlight">\(\mathbf v_1^{\top} \mathbf {t \cdot v_1}\)</span>，且 <span class="math notranslate nohighlight">\(\mathbf v_1^{\top} \mathbf {t}\)</span> 是标量，对其转置其值不变，那么这个数据点与中心 <span class="math notranslate nohighlight">\(\overline {\mathbf t}\)</span> 在 <span class="math notranslate nohighlight">\(\mathbf v_1\)</span> 方向上投影的平方差为</p>
 <div class="math notranslate nohighlight">
-\[p(\mathbf x, t)=p(\mathbf x)p(t|\mathbf x)\]</div>
-<p>于是，上式中第二个等式中交叉项</p>
-<div class="math notranslate nohighlight" id="equation-intro2">
-<span class="eqno">(2)<a class="headerlink" href="#equation-intro2" title="Permalink to this equation">¶</a></span>\[\begin{split}
-\begin{aligned}
-&amp;\int\int 2(y(\mathbf x)-h(\mathbf x))(h(\mathbf x)-t)p(\mathbf x, t)d\mathbf x dt
-\\=&amp;\int2(y(\mathbf x)-h(\mathbf x)) \left(\int(h(\mathbf x)-t)p(t|\mathbf x) dt \right) p(\mathbf x) d\mathbf x
-\\=&amp;\int2(y(\mathbf x)-h(\mathbf x)) \left(h(\mathbf x)-\int t \cdot p(t|\mathbf x) dt \right) p(\mathbf x) d\mathbf x
-\\=&amp;\int2(y(\mathbf x)-h(\mathbf x)) \left(h(\mathbf x)-h(\mathbf x) \right) p(\mathbf x) d\mathbf x
-\\=&amp; 0
-\end{aligned}
-\end{split}\]</div>
-<p><a class="reference internal" href="#equation-intro2">(2)</a> 式倒数第二个等式成立是因为随机变量 <span class="math notranslate nohighlight">\(t\)</span> 符合正态分布，它的期望值等于中心值 <span class="math notranslate nohighlight">\(h(\mathbf x)\)</span>，于是 <a class="reference internal" href="#equation-intro1">(1)</a> 式的第二个等式成立。</p>
-<p>根据 <a class="reference internal" href="#equation-intro1">(1)</a> 式可知，误差可分解为预测误差和噪声误差，前者与所选模型有关，后者与数据噪声有关。</p>
-<div class="section" id="id5">
-<h4>预测误差<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
-<p>预测函数是通过某一数据集 <span class="math notranslate nohighlight">\(D\)</span> 训练出来的故可写为 <span class="math notranslate nohighlight">\(y(\mathbf x;D)\)</span>，由于不同的数据集导致训练模型也会不同，考虑模型预测的期望值 <span class="math notranslate nohighlight">\(\mathbb E_D[y(\mathbf x; D)]\)</span>，那么预测误差如下，</p>
-<div class="math notranslate nohighlight" id="equation-intro3">
-<span class="eqno">(3)<a class="headerlink" href="#equation-intro3" title="Permalink to this equation">¶</a></span>\[\begin{split}
-\begin{aligned}
-(y(\mathbf x;D)-h(\mathbf x))^2&amp;=\{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]+\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\}^2
-\\&amp;=\{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]\}^2+\{\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\}^2
-\\ &amp; \quad + 2\{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]\}\{\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\}
-\end{aligned}
-\end{split}\]</div>
-<p>对 <span class="math notranslate nohighlight">\(D\)</span> 取期望，不难知道 <span class="math notranslate nohighlight">\(\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\)</span> 对 <span class="math notranslate nohighlight">\(D\)</span> 而言是常数，且有</p>
+\[\|\mathbf v_1^{\top}  \mathbf {t \cdot v_1} - \mathbf v_1^{\top} \mathbf {\overline t \cdot v_1}\|^2=(\mathbf v_1^{\top}  \mathbf t-\mathbf v_1^{\top}  \mathbf {\overline t})^2 \|\mathbf v\|^2=(\mathbf v_1^{\top}  \mathbf t-\mathbf v_1^{\top}  \mathbf {\overline t})(\mathbf t^{\top}  \mathbf v_1- \mathbf {\overline t}^{\top} \mathbf v_1)=\mathbf v_1^{\top}(\mathbf t- \mathbf {\overline t})(\mathbf t - \mathbf {\overline t})^{\top} \mathbf v_1\]</div>
+<p>所以数据集在映射空间的方差为</p>
+<div class="math notranslate nohighlight" id="equation-pca1">
+<span class="eqno">(17)<a class="headerlink" href="#equation-pca1" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{aligned} V_1&amp;=\frac 1 N \sum_{n=1}^N(\mathbf v_1^{\top}  \mathbf t_n-\mathbf v_1^{\top}  \mathbf {\overline t})^2 
+\\ &amp;=\mathbf v_1^{\top}\left( \frac 1 N \sum_{n=1}^N (\mathbf t- \mathbf {\overline t})(\mathbf t - \mathbf {\overline t})^{\top} \right)\mathbf v_1
+\\ &amp;=\mathbf v_1^{\top}\mathbf S \mathbf v_1
+\end{aligned}\end{split}\]</div>
+<p>上式中，<span class="math notranslate nohighlight">\(\mathbf S\)</span> 是协方差矩阵，由于存在约束条件 <span class="math notranslate nohighlight">\(\mathbf v_1^{\top} \mathbf v_1=1\)</span>，使用拉格朗日乘子法进行优化，</p>
 <div class="math notranslate nohighlight">
-\[\mathbb E_D \{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]\}=\mathbb E_D[y(\mathbf x; D)]-\mathbb E_D[y(\mathbf x; D)]=0\]</div>
-<p>于是 <a class="reference internal" href="#equation-intro3">(3)</a> 式两边对 <span class="math notranslate nohighlight">\(D\)</span> 取期望，得到</p>
-<div class="math notranslate nohighlight" id="equation-intro4">
-<span class="eqno">(4)<a class="headerlink" href="#equation-intro4" title="Permalink to this equation">¶</a></span>\[\mathbb E_D[y(\mathbf x; D)-h(\mathbf x)]^2=\{\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\}^2+\mathbb E_D\{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]\}^2 \]</div>
-<p><a class="reference internal" href="#equation-intro4">(4)</a> 式右侧第一项是预测期望与真实值之间的差距，这个误差来源于预测模型和真实模型之间的偏差，第二项是不同训练集得到的模型产生的预测波动（方差），反映了模型对训练数据的敏感度。</p>
-</div>
-</div>
+\[\mathcal L=V_1+ \lambda_1(1-\mathbf v_1^{\top} \mathbf v_1)=\mathbf v_1^{\top}\mathbf S \mathbf v_1+\lambda_1(1-\mathbf v_1^{\top} \mathbf v_1)\]</div>
+<p>求梯度并令其为零，</p>
+<div class="math notranslate nohighlight">
+\[\nabla \mathcal L=2 \mathbf {S v}_1-2\lambda_1 \mathbf v_1=\mathbf 0\]</div>
+<p>得到</p>
+<div class="math notranslate nohighlight">
+\[\mathbf {S v}_1=\lambda_1 \mathbf v_1\]</div>
+<div class="math notranslate nohighlight">
+\[L=\mathbf v_1^{\top}\mathbf S \mathbf v_1=\lambda_1 \mathbf v_1^{\top} \mathbf v_1=\lambda_1\]</div>
+<p>所以方差最大为 <span class="math notranslate nohighlight">\(\mathbf S\)</span> 的最大特征值，其对应的特征向量就是这里的第一主成分方向 <span class="math notranslate nohighlight">\(\mathbf v_1\)</span>。</p>
+<p><strong>第 k 主成分</strong></p>
+<p>寻找第 <span class="math notranslate nohighlight">\(k\)</span> 主成分方向 <span class="math notranslate nohighlight">\(\mathbf v_k, \ k &gt; 1\)</span>，此时多了 <span class="math notranslate nohighlight">\(k\)</span> 个约束条件 <span class="math notranslate nohighlight">\(\mathbf v_i^{\top} \mathbf v_k=0, \ i=1,2,\cdots , k-1\)</span>，拉格朗日函数为</p>
+<div class="math notranslate nohighlight">
+\[\mathbf L = \mathbf v_k^{\top}\mathbf S \mathbf v_k +\lambda_k(1-\mathbf v_k^{\top} \mathbf v_k)+\sum_{i=1}^{k-1}\lambda_i \mathbf v_i^{\top} \mathbf v_k\]</div>
+<p>取梯度并令其为零，</p>
+<div class="math notranslate nohighlight" id="equation-pca2">
+<span class="eqno">(18)<a class="headerlink" href="#equation-pca2" title="Permalink to this equation">¶</a></span>\[\nabla \mathcal L = 2 \mathbf {S v}_k-2\lambda_k \mathbf v_k+\sum_{i=1}^{k-1}\lambda_i \mathbf v_i= \mathbf 0\]</div>
+<p>上式两边乘以 <span class="math notranslate nohighlight">\(\mathbf v_i^{\top}, \ (\forall i &lt; k)\)</span> 得</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} &amp; \ \mathbf v_i^{\top} \mathbf {S v}_k - \lambda_k \mathbf v_i^{\top} \mathbf v_k + \sum_{j=1}^{k-1}\lambda_j  \mathbf v_i \mathbf v_j=0
+\\ \Rightarrow &amp; \ \mathbf v_i^{\top} \mathbf {S v}_k - \lambda_i=0
+\\ \Rightarrow &amp; \ \lambda_i= \mathbf v_i^{\top} \mathbf {S v}_k=\mathbf v_i^{\top} \mathbf S^{\top} \mathbf v_k=t_i \mathbf v_i^{\top} \mathbf v_k = 0
+\end{aligned}\end{split}\]</div>
+<p>上面第二个 <span class="math notranslate nohighlight">\(\Rightarrow\)</span> 符号右侧中的推导是因为 <span class="math notranslate nohighlight">\(\mathbf S\)</span> 是对称阵，另外需要注意 <span class="math notranslate nohighlight">\(\lambda\)</span> 是拉格朗日乘子的因子，为了避免混淆，特征值使用了 <span class="math notranslate nohighlight">\(t_i\)</span>。于是可知，<span class="math notranslate nohighlight">\(\lambda_i=0, \ \forall i &lt; k\)</span>，代入 <a class="reference internal" href="#equation-pca2">(18)</a> 得 <span class="math notranslate nohighlight">\(\mathbf {S v}_k=\lambda_k \mathbf v_k\)</span>，所以 <span class="math notranslate nohighlight">\(\mathbf v_k\)</span> 也是 <span class="math notranslate nohighlight">\(\mathbf S\)</span> 的特征向量，其特征值为 <span class="math notranslate nohighlight">\(\lambda_k\)</span>，此即数据在 <span class="math notranslate nohighlight">\(\mathbf v_k\)</span> 方向上的投影方差。</p>
+<div class="toctree-wrapper compound">
 </div>
 </div>
 
@@ -339,7 +285,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./intro"
+            path: "./linear"
         },
         predefinedOutput: true
     }
@@ -351,8 +297,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">介绍</a>
-    <a class='right-next' id="next-link" href="../linear/poly.html" title="next page">线性模型</a>
+    <a class='left-prev' id="prev-link" href="Logistic.html" title="previous page">Logistic 回归</a>
+    <a class='right-next' id="next-link" href="PPCA.html" title="next page">PPCA</a>
 
         </div>
         

@@ -53,7 +53,8 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="机器学习概述" href="../intro/intro.html" />
+    <link rel="next" title="Logistic 回归" href="Logistic.html" />
+    <link rel="prev" title="线性模型" href="poly.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -101,10 +102,44 @@
  </span>
 </p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Fisher准则
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="poly.html">
+   线性模型
   </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Fisher准则
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Logistic.html">
+     Logistic 回归
+    </a>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="PCA.html">
+     主成分分析
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="PPCA.html">
+       PPCA
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -188,6 +223,29 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   介绍
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   分析
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   结论
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -198,13 +256,15 @@
                 
   <div class="section" id="fisher">
 <h1>Fisher准则<a class="headerlink" href="#fisher" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>介绍<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>以二分类为例，训练集为 <span class="math notranslate nohighlight">\(D=\{(\boldsymbol \phi_n,t_n):n=1,2,...,N\}, \ t_n \in \{C_1, C_2\}\)</span>，通过线性映射投影到一维空间 <span class="math notranslate nohighlight">\(y\)</span>，</p>
 <div class="math notranslate nohighlight" id="equation-fisher1">
-<span class="eqno">(5)<a class="headerlink" href="#equation-fisher1" title="Permalink to this equation">¶</a></span>\[y=\mathbf w^{\top} \boldsymbol \phi\]</div>
+<span class="eqno">(6)<a class="headerlink" href="#equation-fisher1" title="Permalink to this equation">¶</a></span>\[y=\mathbf w^{\top} \boldsymbol \phi\]</div>
 <p>Fisher 准则定义如下区分性度量：</p>
 <div class="math notranslate nohighlight" id="equation-fisher2">
-<span class="eqno">(6)<a class="headerlink" href="#equation-fisher2" title="Permalink to this equation">¶</a></span>\[L(\mathbf w)=\frac {(m_1-m_2)^2} {\sigma_1^2+\sigma_2^2}\]</div>
-<p>上式中 <span class="math notranslate nohighlight">\(m_1, m_2\)</span> 是 <span class="math notranslate nohighlight">\(C_1, C_2\)</span> 的样本点在映射空间（这里是一维）的均值，<span class="math notranslate nohighlight">\(\sigma_1^2, \sigma_2^2\)</span> 是映射空间的方差，<a class="reference internal" href="#equation-fisher2">(6)</a> 式表示类间距离越大，类内分散程度越小，则这两类区分性越强。</p>
+<span class="eqno">(7)<a class="headerlink" href="#equation-fisher2" title="Permalink to this equation">¶</a></span>\[L(\mathbf w)=\frac {(m_1-m_2)^2} {\sigma_1^2+\sigma_2^2}\]</div>
+<p>上式中 <span class="math notranslate nohighlight">\(m_1, m_2\)</span> 是 <span class="math notranslate nohighlight">\(C_1, C_2\)</span> 的样本点在映射空间（这里是一维）的均值，<span class="math notranslate nohighlight">\(\sigma_1^2, \sigma_2^2\)</span> 是映射空间的离散度，<a class="reference internal" href="#equation-fisher2">(7)</a> 式表示类间距离越大，类内离散程度越小，则这两类区分性越强。</p>
 <p>映射空间 <span class="math notranslate nohighlight">\(C_1\)</span> 样本集合记为 <span class="math notranslate nohighlight">\(D_1\)</span>，数量记为 <span class="math notranslate nohighlight">\(N_1=|D_1|\)</span>，均值为</p>
 <div class="math notranslate nohighlight">
 \[m_1=\frac 1 {N_1} \sum_{\boldsymbol \phi_i \in D_1} \mathbf w^{\top} \boldsymbol \phi_i=\mathbf w^{\top} \boldsymbol \mu_1\]</div>
@@ -216,20 +276,25 @@
 \[(m_2-m_1)^2=[\mathbf w^{\top}(\boldsymbol {\mu_2-\mu_1})]^2=\mathbf w^{\top} \mathbf S_{B} \mathbf w\]</div>
 <p>其中</p>
 <div class="math notranslate nohighlight" id="equation-fisher3">
-<span class="eqno">(7)<a class="headerlink" href="#equation-fisher3" title="Permalink to this equation">¶</a></span>\[\mathbf S_{B}=(\boldsymbol {\mu_2-\mu_1})(\boldsymbol {\mu_2-\mu_1})^{\top}\]</div>
-<p>另一方面，映射空间 <span class="math notranslate nohighlight">\(C_1\)</span> 样本方差为</p>
+<span class="eqno">(8)<a class="headerlink" href="#equation-fisher3" title="Permalink to this equation">¶</a></span>\[\mathbf S_{B}=(\boldsymbol {\mu_2-\mu_1})(\boldsymbol {\mu_2-\mu_1})^{\top}\]</div>
+<p>另一方面，映射空间 <span class="math notranslate nohighlight">\(C_1\)</span> 样本离散程度为</p>
 <div class="math notranslate nohighlight">
-\[\sigma_1^2=\frac 1 {N_1} \sum (y_i - m_1)^2=\frac 1 {N_1} \sum (\mathbf w^{\top}(\boldsymbol {\phi_i - \mu_1}))^2 = \frac 1 {N_1} \sum \mathbf w^{\top} (\boldsymbol {\phi_i-\mu_1})(\boldsymbol {\phi_i-\mu_1})^{\top} \mathbf w\]</div>
+\[\sigma_1^2=\sum_{\boldsymbol \phi_i \in D_1} (y_i - m_1)^2=\sum_{\boldsymbol \phi_i \in D_1} (\mathbf w^{\top}(\boldsymbol {\phi_i - \mu_1}))^2 =\sum_{\boldsymbol \phi_i \in D_1} \mathbf w^{\top} (\boldsymbol {\phi_i-\mu_1})(\boldsymbol {\phi_i-\mu_1})^{\top} \mathbf w\]</div>
 <p>于是</p>
 <div class="math notranslate nohighlight">
 \[\sigma_1^2+\sigma_2^2=\mathbf w^{\top} \mathbf S_W \mathbf w\]</div>
 <p>其中</p>
 <div class="math notranslate nohighlight" id="equation-fisher4">
-<span class="eqno">(8)<a class="headerlink" href="#equation-fisher4" title="Permalink to this equation">¶</a></span>\[\mathbf S_W=\frac 1{N_1} \sum_{\boldsymbol \phi_i \in D_1} (\boldsymbol {\phi_i-\mu_1})(\boldsymbol {\phi_i-\mu_1})^{\top} + \frac 1 {N_2} \sum_{\boldsymbol \phi_i \in D_2} (\boldsymbol {\phi_i-\mu_2})(\boldsymbol {\phi_i-\mu_2})^{\top} \]</div>
-<p>综上 <a class="reference internal" href="#equation-fisher2">(6)</a> 式为</p>
+<span class="eqno">(9)<a class="headerlink" href="#equation-fisher4" title="Permalink to this equation">¶</a></span>\[\mathbf S_W=\sum_{\boldsymbol \phi_i \in D_1} (\boldsymbol {\phi_i-\mu_1})(\boldsymbol {\phi_i-\mu_1})^{\top} +  \sum_{\boldsymbol \phi_i \in D_2} (\boldsymbol {\phi_i-\mu_2})(\boldsymbol {\phi_i-\mu_2})^{\top} \]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这里的样本离散程度没有取平均，所以这里的类内方差不是均方差。这是因为无论样本属于 <span class="math notranslate nohighlight">\(C_1\)</span> 还是 <span class="math notranslate nohighlight">\(C_2\)</span>，它对类内离散程度的贡献应该是相同的权值，或者说跟类样本数量相关。</p>
+<p>举个简单例子，假设 <span class="math notranslate nohighlight">\(N_1=10^4 N_2\)</span>， <span class="math notranslate nohighlight">\(D_1\)</span> 和 <span class="math notranslate nohighlight">\(D_2\)</span> 中的样本分为以 <span class="math notranslate nohighlight">\(\boldsymbol \phi^{(1)}\)</span> 和 <span class="math notranslate nohighlight">\(\boldsymbol \phi^{(2)}\)</span> 为圆心，半径为 <span class="math notranslate nohighlight">\(r_1\)</span> 和 <span class="math notranslate nohighlight">\(r_2\)</span> 的圆上均匀分布，且有 <span class="math notranslate nohighlight">\(r_1=10 r_2\)</span>，那么如果使用方差，<span class="math notranslate nohighlight">\(\sigma_1^2=\frac {r_1^2} {N_1} = \frac {100 r_2^2} {10^4 N_2}=\frac {\sigma_2^2} {100}\)</span>，这表明 <span class="math notranslate nohighlight">\(D_1\)</span> 远远没有 <span class="math notranslate nohighlight">\(D_2\)</span> 分散，然而 <span class="math notranslate nohighlight">\(D_1\)</span> 分布更大的圆上，应该更分散才对，所以两类样本应该设置相同的离散贡献权值，相对 <span class="math notranslate nohighlight">\(\mathbf w\)</span> 而言可视为常数，由于对求解最优 <span class="math notranslate nohighlight">\(\mathbf w\)</span> 没有影响，故可直接设置为 1。</p>
+</div>
+<p>综上 <a class="reference internal" href="#equation-fisher2">(7)</a> 式为</p>
 <div class="math notranslate nohighlight" id="equation-fisher5">
-<span class="eqno">(9)<a class="headerlink" href="#equation-fisher5" title="Permalink to this equation">¶</a></span>\[L(\mathbf w)=\frac {\mathbf w^{\top} \mathbf S_{B} \mathbf w} {\mathbf w^{\top} \mathbf S_W \mathbf w}\]</div>
-<p>对 <a class="reference internal" href="#equation-fisher5">(9)</a> 式中的 <span class="math notranslate nohighlight">\(\mathbf w\)</span> 进行优化，取梯度并令其等于 0，得到</p>
+<span class="eqno">(10)<a class="headerlink" href="#equation-fisher5" title="Permalink to this equation">¶</a></span>\[L(\mathbf w)=\frac {\mathbf w^{\top} \mathbf S_{B} \mathbf w} {\mathbf w^{\top} \mathbf S_W \mathbf w}\]</div>
+<p>对 <a class="reference internal" href="#equation-fisher5">(10)</a> 式中的 <span class="math notranslate nohighlight">\(\mathbf w\)</span> 进行优化，取梯度并令其等于 0，得到</p>
 <div class="math notranslate nohighlight">
 \[\nabla_{\mathbf w} L(\mathbf w)=\frac {\mathbf S_B \mathbf w(\mathbf w^{\top} \mathbf S_W \mathbf w)-(\mathbf w^{\top} \mathbf S_{B} \mathbf w)\mathbf S_W \mathbf w} {(\mathbf w^{\top} \mathbf S_W \mathbf w)^2}=0\]</div>
 <p>整理得</p>
@@ -246,13 +311,63 @@
 \[\mathbf S_W \mathbf w \propto \ \boldsymbol {\mu_2-\mu_1}\]</div>
 <p>如果 <span class="math notranslate nohighlight">\(\mathbf S_W\)</span> 满秩，则有</p>
 <div class="math notranslate nohighlight" id="equation-fisher6">
-<span class="eqno">(10)<a class="headerlink" href="#equation-fisher6" title="Permalink to this equation">¶</a></span>\[\mathbf w \propto \ \mathbf S_W^{-1} (\boldsymbol {\mu_2-\mu_1})\]</div>
-<p><a class="reference internal" href="#equation-fisher6">(10)</a> 式表示最具有区分性的 <span class="math notranslate nohighlight">\(\mathbf w\)</span> 应与这两类样本中心的连线 <span class="math notranslate nohighlight">\(\boldsymbol {\mu_2-\mu_1}\)</span> 大致同向，但应基于类内方差矩阵 <span class="math notranslate nohighlight">\(\mathbf S_W\)</span> 进行调整。</p>
+<span class="eqno">(11)<a class="headerlink" href="#equation-fisher6" title="Permalink to this equation">¶</a></span>\[\mathbf w \propto \ \mathbf S_W^{-1} (\boldsymbol {\mu_2-\mu_1})\]</div>
+<p><a class="reference internal" href="#equation-fisher6">(11)</a> 式表示最具有区分性的 <span class="math notranslate nohighlight">\(\mathbf w\)</span> 应与这两类样本中心的连线 <span class="math notranslate nohighlight">\(\boldsymbol {\mu_2-\mu_1}\)</span> 大致同向，但应基于类内方差矩阵 <span class="math notranslate nohighlight">\(\mathbf S_W\)</span> 进行调整。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>在我们的直观理解上，判别超平面表示为
-<span class="math notranslate nohighlight">\(y=\mathbf w \boldsymbol \phi=0\)</span>
-，例如 <span class="math notranslate nohighlight">\(y&gt;0\)</span> 表示 <span class="math notranslate nohighlight">\(C_1\)</span> 类，<span class="math notranslate nohighlight">\(y&lt;0\)</span> 表示 <span class="math notranslate nohighlight">\(C_2\)</span> 类，显然判别超平面大致垂直于这两类样本中心连线，而超平面的法线方向就是 <span class="math notranslate nohighlight">\(\mathbf w\)</span>，所以 <span class="math notranslate nohighlight">\(\mathbf w\)</span> 大致与中心连线 <span class="math notranslate nohighlight">\(\boldsymbol {\mu_2-\mu_1}\)</span> 同向。</p>
+<span class="math notranslate nohighlight">\(y=\mathbf w \boldsymbol \phi\)</span>
+，例如 <span class="math notranslate nohighlight">\(y \ge -w_0\)</span> 表示 <span class="math notranslate nohighlight">\(C_1\)</span> 类，<span class="math notranslate nohighlight">\(y&lt;-w_0\)</span> 表示 <span class="math notranslate nohighlight">\(C_2\)</span> 类，显然判别超平面大致垂直于这两类样本中心连线，而超平面的法线方向就是 <span class="math notranslate nohighlight">\(\mathbf w\)</span>，所以 <span class="math notranslate nohighlight">\(\mathbf w\)</span> 大致与中心连线 <span class="math notranslate nohighlight">\(\boldsymbol {\mu_2-\mu_1}\)</span> 同向。</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>分析<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>为什么要用这个准则？</p>
+<p>假设 <span class="math notranslate nohighlight">\(C_1\)</span> 样本点的目标值 <span class="math notranslate nohighlight">\(t=N/N_1\)</span>，<span class="math notranslate nohighlight">\(C_2\)</span> 样本点的目标值为 <span class="math notranslate nohighlight">\(t=-N/N_2\)</span></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这种目标值的设定，使得整个数据集的样本在映射空间的中心为 0，这显然是合理的，两个类别的样本中心则位于 0 的两侧。但是在映射空间中 0 位置处作为分割位置不一定最优，还需要增加一个偏差 <span class="math notranslate nohighlight">\(w_0\)</span></p>
+</div>
+<p>线性拟合函数为</p>
+<div class="math notranslate nohighlight">
+\[y=\mathbf w^{\top} \mathbf x + w_0\]</div>
+<p>拟合误差为</p>
+<div class="math notranslate nohighlight">
+\[E(\mathbf w)=\frac 1 2 \sum_{i=1}^N (\mathbf w^{\top} \boldsymbol \phi_i+w_0-t_i)^2\]</div>
+<p>根据误差对参数 <span class="math notranslate nohighlight">\(\mathbf w\)</span> 的梯度为零对参数<span class="math notranslate nohighlight">\(\mathbf w\)</span> 和 <span class="math notranslate nohighlight">\(w_0\)</span> 进行优化，有</p>
+<div class="math notranslate nohighlight" id="equation-fisher7">
+<span class="eqno">(12)<a class="headerlink" href="#equation-fisher7" title="Permalink to this equation">¶</a></span>\[\sum_{i=1}^N (\mathbf w^{\top} \boldsymbol \phi_i + w_0 -t_i)=0\]</div>
+<div class="math notranslate nohighlight" id="equation-fisher8">
+<span class="eqno">(13)<a class="headerlink" href="#equation-fisher8" title="Permalink to this equation">¶</a></span>\[
+\sum_{i=1}^N (\mathbf w^{\top} \boldsymbol \phi_i + w_0 -t_i)\boldsymbol \phi_i=0\]</div>
+<p>由于</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^N t_i = N_1 \frac N {N_1} - N_2 \frac N {N_2}=0\]</div>
+<p>结合 <a class="reference internal" href="#equation-fisher7">(12)</a> 得</p>
+<div class="math notranslate nohighlight">
+\[w_0=-\mathbf w^{\top} \boldsymbol \mu=-\mathbf w^{\top} \frac 1 N (N_1 \boldsymbol \mu_1 + N_2 \boldsymbol \mu_2)\]</div>
+<p>整理 <a class="reference internal" href="#equation-fisher8">(13)</a> 式并代入上式，</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} \sum_{i=1}^N (\mathbf w^{\top} \boldsymbol \phi_i + w_0 -t_i)\boldsymbol \phi_i&amp;=\sum_{i=1}^N \boldsymbol \phi_i(\boldsymbol \phi_i^{\top} \mathbf w + w_0 -t_i)
+\\ &amp;=\sum_{i=1}^N \boldsymbol \phi_i (\boldsymbol \phi_i^{\top} \mathbf w+w_0) - N(\boldsymbol \mu_1-\boldsymbol \mu_2)
+\\ &amp;= \sum_{i=1}^N \boldsymbol \phi_i \boldsymbol \phi_i^{\top} \mathbf w - N \boldsymbol \mu \boldsymbol \mu^{\top} \mathbf w - N(\boldsymbol \mu_1-\boldsymbol \mu_2)
+\\ &amp;= \left(\sum_{i=1}^N \boldsymbol \phi_i \boldsymbol \phi_i^{\top}  -\frac 1 N (N_1 \boldsymbol \mu_1 + N_2 \boldsymbol \mu_2) (N_1 \boldsymbol \mu_1 + N_2 \boldsymbol \mu_2) \right)\mathbf w - N(\boldsymbol \mu_1-\boldsymbol \mu_2)
+\end{aligned}\end{split}\]</div>
+<p>另外根据 <a class="reference internal" href="#equation-fisher3">(8)</a> 和 <a class="reference internal" href="#equation-fisher4">(9)</a> 有</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+\left(\mathbf S_W + \frac {N_1N_2} N\mathbf S_B \right)&amp;=\sum_{i=1}^N \boldsymbol {\phi_i \phi_i^{\top}} -N_1 \boldsymbol {\mu_1 \mu_1^{\top}} -N_2 \boldsymbol {\mu_2 \mu_2^{\top}} + \frac 1 N N_1N_2(\boldsymbol {\mu_2- \mu_1}) (\boldsymbol {\mu_2- \mu_1}) ^{\top}
+\\ &amp;=\sum_{i=1}^N \boldsymbol {\phi_i \phi_i^{\top}} - \frac 1 N [(N_1+N_2)N_1 \boldsymbol {\mu_1 \mu_1^{\top}}+(N_1+N_2)N_2\boldsymbol {\mu_2 \mu_2^{\top}}-N_1N_2(\boldsymbol {\mu_2- \mu_1}) (\boldsymbol {\mu_2- \mu_1}) ^{\top}]
+\\ &amp;= \sum_{i=1}^N \boldsymbol {\phi_i \phi_i^{\top}} -\frac 1 N (N_1 \boldsymbol \mu_1 + N_2 \boldsymbol \mu_2) (N_1 \boldsymbol \mu_1 + N_2 \boldsymbol \mu_2)
+\end{aligned}\end{split}\]</div>
+<p>结合以上两式以及 <a class="reference internal" href="#equation-fisher8">(13)</a> 有</p>
+<div class="math notranslate nohighlight">
+\[\left(\mathbf S_W + \frac {N_1N_2} N\mathbf S_B \right)\mathbf w = N(\boldsymbol \mu_1-\boldsymbol \mu_2)\]</div>
+<p>上面分析到 <span class="math notranslate nohighlight">\(\mathbf S_B \mathbf w \propto \ \boldsymbol {\mu_2-\mu_1}\)</span>，所以当 <span class="math notranslate nohighlight">\(\mathbf S_W \)</span> 满秩时，<a class="reference internal" href="#equation-fisher6">(11)</a> 成立。</p>
+</div>
+<div class="section" id="id3">
+<h2>结论<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>依 Fisher 准则得到的映射函数和基于线性拟合得到的映射函数是等价的，但是线性拟合等价于一个线性回归模型，其基本假设 <span class="math notranslate nohighlight">\(p(t|\boldsymbol \phi)\)</span> 是高斯分布，故 Fisher 方法事实上架设了任务中类别标记符合高斯分布，这对分类任务而言显示不合理，容易受到离群点的影响。</p>
 </div>
 </div>
 
@@ -281,7 +396,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="../intro/intro.html" title="previous page">机器学习概述</a>
+    <a class='left-prev' id="prev-link" href="poly.html" title="previous page">线性模型</a>
+    <a class='right-next' id="next-link" href="Logistic.html" title="next page">Logistic 回归</a>
 
         </div>
         

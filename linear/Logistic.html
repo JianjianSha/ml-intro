@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>机器学习概述 &#8212; 机器学习导论笔记</title>
+    <title>Logistic 回归 &#8212; 机器学习导论笔记</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="线性模型" href="../linear/poly.html" />
-    <link rel="prev" title="介绍" href="../index.html" />
+    <link rel="next" title="主成分分析" href="PCA.html" />
+    <link rel="prev" title="Fisher准则" href="Fisher.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -89,9 +89,9 @@
   概述
  </span>
 </p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro/intro.html">
    机器学习概述
   </a>
  </li>
@@ -101,29 +101,29 @@
   线性模型
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../linear/poly.html">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="poly.html">
    线性模型
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="../linear/Fisher.html">
+    <a class="reference internal" href="Fisher.html">
      Fisher准则
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../linear/Logistic.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Logistic 回归
     </a>
    </li>
    <li class="toctree-l2 has-children">
-    <a class="reference internal" href="../linear/PCA.html">
+    <a class="reference internal" href="PCA.html">
      主成分分析
     </a>
     <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
@@ -133,7 +133,7 @@
     </label>
     <ul>
      <li class="toctree-l3">
-      <a class="reference internal" href="../linear/PPCA.html">
+      <a class="reference internal" href="PPCA.html">
        PPCA
       </a>
      </li>
@@ -182,7 +182,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/intro/intro.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/linear/Logistic.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -202,7 +202,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/JianjianSha/ml-intro/issues/new?title=Issue%20on%20page%20%2Fintro/intro.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/JianjianSha/ml-intro/issues/new?title=Issue%20on%20page%20%2Flinear/Logistic.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -229,28 +229,9 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id2">
-   1.8 机器学习基础
+  <a class="reference internal nav-link" href="#softmax">
+   Softmax 回归
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id3">
-     1.8.2 参数过拟合、交叉验证与正则化
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id4">
-     1.8.3 结构过拟合与模型选择
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id5">
-       预测误差
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -263,66 +244,61 @@
         
               <div>
                 
-  <div class="section" id="id1">
-<h1>机器学习概述<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id2">
-<h2>1.8 机器学习基础<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id3">
-<h3>1.8.2 参数过拟合、交叉验证与正则化<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<p>防止过拟合的方法：</p>
-<ol class="simple">
-<li><p>在训练过程中用测试集来检测模型性能，当模型性能在测试集上开始下降时，认为出现过拟合，停止训练</p></li>
-<li><p>在目标函数中加入正则项，控制参数的取值范围</p></li>
-</ol>
-</div>
-<div class="section" id="id4">
-<h3>1.8.3 结构过拟合与模型选择<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<p>设测试数据 <span class="math notranslate nohighlight">\(\mathbf x\)</span> 的真实目标值为 <span class="math notranslate nohighlight">\(h(\mathbf x)\)</span>，观察到的目标值 <span class="math notranslate nohighlight">\(t\)</span>，模型预测值 <span class="math notranslate nohighlight">\(y(\mathbf x)\)</span>，记 <span class="math notranslate nohighlight">\(\mathbf x\)</span> 和 <span class="math notranslate nohighlight">\(t\)</span> 的联合分布为 <span class="math notranslate nohighlight">\(p(\mathbf x, t)\)</span>，那么目标值与预测值之间的误差（方差）为，</p>
-<div class="math notranslate nohighlight" id="equation-intro1">
-<span class="eqno">(1)<a class="headerlink" href="#equation-intro1" title="Permalink to this equation">¶</a></span>\[\begin{split}
-\begin{aligned}
-&amp;\int\int(y(\mathbf x)-t)^2 p(\mathbf x, t)d\mathbf x dt
-\\ =&amp; \int\int(y(\mathbf x)-h(\mathbf x)+h(\mathbf x)-t)^2 p(\mathbf x, t)d\mathbf x dt 
-\\ =&amp; \int\int (y(\mathbf x)-h(\mathbf x))^2p(\mathbf x, t)d\mathbf x dt +\int\int (h(\mathbf x)-t)^2p(\mathbf x, t)d\mathbf x dt
-\\=&amp;\int (y(\mathbf x)-h(\mathbf x))^2p(\mathbf x)d\mathbf x + \int\int (h(\mathbf x)-t)^2p(\mathbf x, t)d\mathbf x dt
-\end{aligned}
-\end{split}\]</div>
-<p>我们假设目标值 <span class="math notranslate nohighlight">\(t\)</span> 符合以 <span class="math notranslate nohighlight">\(h(\mathbf x)\)</span> 为中心的正态分布，根据</p>
+  <div class="section" id="logistic">
+<h1>Logistic 回归<a class="headerlink" href="#logistic" title="Permalink to this headline">¶</a></h1>
+<p>Logistic 回归是在线性函数的基础之上再套用一个非线性函数</p>
 <div class="math notranslate nohighlight">
-\[p(\mathbf x, t)=p(\mathbf x)p(t|\mathbf x)\]</div>
-<p>于是，上式中第二个等式中交叉项</p>
-<div class="math notranslate nohighlight" id="equation-intro2">
-<span class="eqno">(2)<a class="headerlink" href="#equation-intro2" title="Permalink to this equation">¶</a></span>\[\begin{split}
-\begin{aligned}
-&amp;\int\int 2(y(\mathbf x)-h(\mathbf x))(h(\mathbf x)-t)p(\mathbf x, t)d\mathbf x dt
-\\=&amp;\int2(y(\mathbf x)-h(\mathbf x)) \left(\int(h(\mathbf x)-t)p(t|\mathbf x) dt \right) p(\mathbf x) d\mathbf x
-\\=&amp;\int2(y(\mathbf x)-h(\mathbf x)) \left(h(\mathbf x)-\int t \cdot p(t|\mathbf x) dt \right) p(\mathbf x) d\mathbf x
-\\=&amp;\int2(y(\mathbf x)-h(\mathbf x)) \left(h(\mathbf x)-h(\mathbf x) \right) p(\mathbf x) d\mathbf x
-\\=&amp; 0
-\end{aligned}
-\end{split}\]</div>
-<p><a class="reference internal" href="#equation-intro2">(2)</a> 式倒数第二个等式成立是因为随机变量 <span class="math notranslate nohighlight">\(t\)</span> 符合正态分布，它的期望值等于中心值 <span class="math notranslate nohighlight">\(h(\mathbf x)\)</span>，于是 <a class="reference internal" href="#equation-intro1">(1)</a> 式的第二个等式成立。</p>
-<p>根据 <a class="reference internal" href="#equation-intro1">(1)</a> 式可知，误差可分解为预测误差和噪声误差，前者与所选模型有关，后者与数据噪声有关。</p>
-<div class="section" id="id5">
-<h4>预测误差<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
-<p>预测函数是通过某一数据集 <span class="math notranslate nohighlight">\(D\)</span> 训练出来的故可写为 <span class="math notranslate nohighlight">\(y(\mathbf x;D)\)</span>，由于不同的数据集导致训练模型也会不同，考虑模型预测的期望值 <span class="math notranslate nohighlight">\(\mathbb E_D[y(\mathbf x; D)]\)</span>，那么预测误差如下，</p>
-<div class="math notranslate nohighlight" id="equation-intro3">
-<span class="eqno">(3)<a class="headerlink" href="#equation-intro3" title="Permalink to this equation">¶</a></span>\[\begin{split}
-\begin{aligned}
-(y(\mathbf x;D)-h(\mathbf x))^2&amp;=\{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]+\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\}^2
-\\&amp;=\{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]\}^2+\{\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\}^2
-\\ &amp; \quad + 2\{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]\}\{\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\}
-\end{aligned}
-\end{split}\]</div>
-<p>对 <span class="math notranslate nohighlight">\(D\)</span> 取期望，不难知道 <span class="math notranslate nohighlight">\(\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\)</span> 对 <span class="math notranslate nohighlight">\(D\)</span> 而言是常数，且有</p>
+\[\sigma(x)=\frac 1 {1+ e^{-x}}\]</div>
+<p>于是分类函数（这里以二分类为例）为</p>
 <div class="math notranslate nohighlight">
-\[\mathbb E_D \{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]\}=\mathbb E_D[y(\mathbf x; D)]-\mathbb E_D[y(\mathbf x; D)]=0\]</div>
-<p>于是 <a class="reference internal" href="#equation-intro3">(3)</a> 式两边对 <span class="math notranslate nohighlight">\(D\)</span> 取期望，得到</p>
-<div class="math notranslate nohighlight" id="equation-intro4">
-<span class="eqno">(4)<a class="headerlink" href="#equation-intro4" title="Permalink to this equation">¶</a></span>\[\mathbb E_D[y(\mathbf x; D)-h(\mathbf x)]^2=\{\mathbb E_D[y(\mathbf x; D)]-h(\mathbf x)\}^2+\mathbb E_D\{y(\mathbf x;D)-\mathbb E_D[y(\mathbf x; D)]\}^2 \]</div>
-<p><a class="reference internal" href="#equation-intro4">(4)</a> 式右侧第一项是预测期望与真实值之间的差距，这个误差来源于预测模型和真实模型之间的偏差，第二项是不同训练集得到的模型产生的预测波动（方差），反映了模型对训练数据的敏感度。</p>
-</div>
-</div>
+\[y=p(t|\mathbf x; \mathbf w)=\sigma(\mathbf {w^{\top} x})\]</div>
+<p>目标函数为负对数似然函数，</p>
+<div class="math notranslate nohighlight" id="equation-logis1">
+<span class="eqno">(14)<a class="headerlink" href="#equation-logis1" title="Permalink to this equation">¶</a></span>\[L(\mathbf w)=-\log p(D;\mathbf w)=-\sum_{i=1}^N[t_i \log y_i+(1-t_i)\log(1-y_i)]\]</div>
+<p><a class="reference internal" href="#equation-logis1">(14)</a> 即损失函数，也成为交叉熵函数，其梯度为</p>
+<div class="math notranslate nohighlight">
+\[\nabla_{\mathbf w}L=-\sum_{i=1}^N (\frac {t_i} {y_i} y_i' - \frac {1-t_i} {1-y_i} y_i')\]</div>
+<p>其中</p>
+<div class="math notranslate nohighlight">
+\[y'=\sigma'=\sigma(1-\sigma)\]</div>
+<p>代入得</p>
+<div class="math notranslate nohighlight" id="equation-logis2">
+<span class="eqno">(15)<a class="headerlink" href="#equation-logis2" title="Permalink to this equation">¶</a></span>\[\nabla_{\mathbf w}L=-\sum_{i=1}^N \left[\frac {t_i} {y_i} y_i (1-y_i)\mathbf x - \frac {1-t_i} {1-y_i} y_i (1-y_i)\mathbf x\right]=\sum_{i=1}^N (y_i-t_i)\mathbf x\]</div>
+<p>根据上式采用梯度下降法进行数值求解。</p>
+<div class="section" id="softmax">
+<h2>Softmax 回归<a class="headerlink" href="#softmax" title="Permalink to this headline">¶</a></h2>
+<p>Softmax 回归适用于多分类问题。<strong>预测</strong> 目标值 <span class="math notranslate nohighlight">\(\mathbf t\)</span> 是一个 one-hot 向量，故模型的输出 <span class="math notranslate nohighlight">\(\mathbf y\)</span> 也是一个向量，模型参数为矩阵 <span class="math notranslate nohighlight">\(\mathbf W\)</span>，记输入向量 <span class="math notranslate nohighlight">\(\mathbf x\)</span> 维度为 <span class="math notranslate nohighlight">\(M\)</span>，分类数量为 <span class="math notranslate nohighlight">\(C\)</span>，那么 <span class="math notranslate nohighlight">\(\mathbf W\)</span> 维度为 <span class="math notranslate nohighlight">\(M\times C\)</span>，可写为 <span class="math notranslate nohighlight">\(\mathbf W=[\mathbf w_1, ..., \mathbf w_C]\)</span></p>
+<p>分类函数为</p>
+<div class="math notranslate nohighlight">
+\[y_c=p(t_c=1|\mathbf x)=\frac {\exp (\mathbf w_c^{\top} \mathbf x)}{\sum_{j=1}^C \exp (\mathbf w_j^{\top} \mathbf x)}\]</div>
+<p>注： <span class="math notranslate nohighlight">\(y_c\)</span> 表示分类属于 c 的概率，即预测目标值 <span class="math notranslate nohighlight">\(t_c=1\)</span> 的概率。</p>
+<p>记线性变换的结果为</p>
+<div class="math notranslate nohighlight">
+\[a_c = \mathbf w_c^{\top} \mathbf x\]</div>
+<p>梯度为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}\frac {dy_c}{d a_i}&amp;=\frac {\mathbb I(i=c) \exp(a_c) (\sum_{j=1}^C \exp(a_j))- \exp(a_c) \exp(a_i)} {(\sum_{j=1}^C \exp(a_j))^2}
+\\ &amp;= y_c \frac {\mathbb I(i=c) \sum_{j=1}^C \exp(a_j)- \exp(a_i)} {\sum_{j=1}^C \exp(a_j)}
+\\ &amp;= y_c [\mathbb I(i=c)-y_i]
+\end{aligned}\end{split}\]</div>
+<p>记单位矩阵 <span class="math notranslate nohighlight">\(\mathbf I_{C \times C}\)</span>，那么梯度简化为</p>
+<div class="math notranslate nohighlight" id="equation-logis3">
+<span class="eqno">(16)<a class="headerlink" href="#equation-logis3" title="Permalink to this equation">¶</a></span>\[\frac {dy_c}{d a_i}=y_c (I_{ci}-y_i), \ i=1,2,...,C\]</div>
+<p>训练集 <span class="math notranslate nohighlight">\(D\)</span>，其中样本总数量为 <span class="math notranslate nohighlight">\(N\)</span>，<strong>真实</strong> 目标值记为 <span class="math notranslate nohighlight">\(\mathbf T_{N \times C}\)</span>，似然函数为</p>
+<div class="math notranslate nohighlight">
+\[p(\mathbf T|\mathbf W)=\prod_{n=1}^N \prod_{c=1}^C p(t_c=1|\mathbf x_n)^{T_{nc}}=\prod_{n=1}^N \prod_{c=1}^C y_{nc}^{T_{nc}}\]</div>
+<p>其中 <span class="math notranslate nohighlight">\(y_{nc}=p(t_c=1|\mathbf x_n)\)</span>，表示第 <span class="math notranslate nohighlight">\(n\)</span> 个样本的预测目标值的 第 <span class="math notranslate nohighlight">\(c\)</span> 个分量为 1 的概率。从这里再次可见，似然函数只考虑样本真实分类所对应的分类预测值，其他分类不考虑，例如第 <span class="math notranslate nohighlight">\(T_{nc}=1\)</span>，表示就第 <span class="math notranslate nohighlight">\(n\)</span> 个样本而言，只考虑其预测分类为 <span class="math notranslate nohighlight">\(c\)</span> 的概率 <span class="math notranslate nohighlight">\(p(t_c=1|\mathbf x_n)\)</span>。</p>
+<p>损失采用负对数似然函数，</p>
+<div class="math notranslate nohighlight">
+\[L(\mathbf W)=-\sum_{n=1}^N \sum_{c=1}^C T_{nc} \log y_{nc}\]</div>
+<p>结合 <a class="reference internal" href="#equation-logis3">(16)</a> ，注意由于 <span class="math notranslate nohighlight">\(T_{nc}\)</span> 的作用，此时指示因子为 ，表示第 <span class="math notranslate nohighlight">\(n\)</span> 个样本的预测梯度为</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned} \nabla_{\mathbf w_j} L&amp;=-\sum_{n=1}^N \sum_{c=1}^C T_{nc} \frac {y_{nc}(I_{cj}-y_{nj})} {y_{nc}}\mathbf x_n
+\\ &amp;=\sum_{n=1}^N \sum_{c=1}^C T_{nc}(y_{nj}-I_{cj})\mathbf x_n
+\\ &amp;=\sum_{n=1}^N \mathbf x_n \left(y_{nj}\sum_{c=1}^C T_{nc} -\sum_{c=1}^C T_{nc} I_{cj} \right)
+\\ &amp;=\sum_{n=1}^N \mathbf x_n (y_{nj}-T_{nj})
+\end{aligned}\end{split}\]</div>
+<p>上式最后一个等式中，由于每个样本的目标值为 one-hot 向量，所以 <span class="math notranslate nohighlight">\(\sum_{c=1}^C T_{nc}=1\)</span>，另外 <span class="math notranslate nohighlight">\(\sum_{c=1}^C T_{nc} I_{cj}\)</span> 的作用是筛选出 <span class="math notranslate nohighlight">\(T_{nj}\)</span>。</p>
 </div>
 </div>
 
@@ -339,7 +315,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./intro"
+            path: "./linear"
         },
         predefinedOutput: true
     }
@@ -351,8 +327,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">介绍</a>
-    <a class='right-next' id="next-link" href="../linear/poly.html" title="next page">线性模型</a>
+    <a class='left-prev' id="prev-link" href="Fisher.html" title="previous page">Fisher准则</a>
+    <a class='right-next' id="next-link" href="PCA.html" title="next page">主成分分析</a>
 
         </div>
         
